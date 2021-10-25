@@ -4,13 +4,13 @@ import React, { useState, useEffect } from 'react';
 // import 'ag-grid-community/dist/styles/ag-theme-bootstrap.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Activity from 'react-bootstrap-icons/dist/icons/bicycle';
-import Calendar from 'react-bootstrap-icons/dist/icons/calendar2-date';
-import Time from 'react-bootstrap-icons/dist/icons/stopwatch';
-import Customer from 'react-bootstrap-icons/dist/icons/person-circle';
-import City from 'react-bootstrap-icons/dist/icons/geo-alt';
-import Email from 'react-bootstrap-icons/dist/icons/envelope-open';
-import Phone from 'react-bootstrap-icons/dist/icons/telephone';
+import Activity from '.../react-bootstrap-icons/dist/icons/bicycle';
+import Calendar from '.../react-bootstrap-icons/dist/icons/calendar2-date';
+import Time from '.../react-bootstrap-icons/dist/icons/stopwatch';
+import Customer from '.../react-bootstrap-icons/dist/icons/person-circle';
+import City from '.../react-bootstrap-icons/dist/icons/geo-alt';
+import Email from '.../react-bootstrap-icons/dist/icons/envelope-open';
+import Phone from '.../react-bootstrap-icons/dist/icons/telephone';
 
 
 import Table from 'react-bootstrap/Table';
