@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 
 import { AgGridReact } from 'ag-grid-react';
 // import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-bootstrap.css';
+import 'ag-grid-community/dist/styles/ag-theme-material.css';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 
 function ForTrainers() {
 
@@ -13,34 +13,35 @@ function ForTrainers() {
     useEffect(() => {
         fetch('https://customerrest.herokuapp.com/api/customers')
             .then(response => response.json())
-            .then(data => setCustomers(data.content))
+            .then(data => { 
+                setCustomers(data.content)
+                console.log(data.content)
+            })
             .catch(err => console.error(err))
     }, [])
 
     const columns = [
         // {field: 'id'},
-        { headerName: "Name", field: 'firstname', width: 120 },
-        { headerName: "Surname", field: 'lastname', width: 120 },
-        { headerName: "Street adress", field: 'streetadress', width: 120 },
-        { headerName: "Post Code", field: 'postcode', width: 120 },
-        { headerName: "City", field: 'city', width: 120 },
-        { headerName: "Email", field: 'email', width: 120 },
-        { headerName: "Phone", field: 'phone', width: 120 },
+        { headerName: "Name", field: 'firstname' },
+        { headerName: "Surname", field: 'lastname' },
+        { headerName: "Street adress", field: 'streetadress' },
+        { headerName: "Post Code", field: 'postcode' },
+        { headerName: "City", field: 'city' },
+        { headerName: "Email", field: 'email', },
+        { headerName: "Phone", field: 'phone'},
     ]
 
       return (
 
         
       
-            <div className="ag-theme-bootstrap" >
+            <div className="ag-theme-material"  style={{ width: 1700, height: 700}}>
 
                 
                 <AgGridReact
                     
                     rowData={customers}
                     columnDefs={columns}
-
-                    multiSortKey={'ctrl'}
                       
                 />
 {/* 

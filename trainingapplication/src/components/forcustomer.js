@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 // import {AgGridReact} from 'ag-grid-react';
 // import 'ag-grid-community/dist/styles/ag-grid.css';
-// import 'ag-grid-community/dist/styles/ag-theme-bootstrap.css';
+import 'ag-grid-community/dist/styles/ag-theme-bootstrap.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Activity from '.../react-bootstrap-icons/dist/icons/bicycle';
-import Calendar from '.../react-bootstrap-icons/dist/icons/calendar2-date';
-import Time from '.../react-bootstrap-icons/dist/icons/stopwatch';
-import Customer from '.../react-bootstrap-icons/dist/icons/person-circle';
-import City from '.../react-bootstrap-icons/dist/icons/geo-alt';
-import Email from '.../react-bootstrap-icons/dist/icons/envelope-open';
-import Phone from '.../react-bootstrap-icons/dist/icons/telephone';
+// import Activity from '.../react-bootstrap-icons/dist/icons/bicycle';
+// import Calendar from '.../react-bootstrap-icons/dist/icons/calendar2-date';
+// import Time from '.../react-bootstrap-icons/dist/icons/stopwatch';
+// import Customer from '.../react-bootstrap-icons/dist/icons/person-circle';
+// import City from '.../react-bootstrap-icons/dist/icons/geo-alt';
+// import Email from '.../react-bootstrap-icons/dist/icons/envelope-open';
+// import Phone from '.../react-bootstrap-icons/dist/icons/telephone';
 
 
 import Table from 'react-bootstrap/Table';
@@ -43,13 +43,13 @@ function ForCustomers() {
             <Table responsive>
                 <thead >
                     <tr style={{ fontSize: '18px', alignItems: 'center' }}>
-                        <th>Date <Calendar /></th>
+                        {/* <th>Date <Calendar /></th>
                         <th>Duration <Time /></th>
                         <th>Activity <Activity /></th>
                         <th>Customer <Customer /></th>
                         <th>City <City /></th>
                         <th>Email <Email /></th>
-                        <th>Phone <Phone /></th>
+                        <th>Phone <Phone /></th> */}
 
                     </tr>
                 </thead>

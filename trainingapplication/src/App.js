@@ -1,7 +1,7 @@
 import './App.css';
 // import Dashboard from './components/dashboard';
-import ForCustomers from './components/forcustomer';
-// import ForTrainers from './components/fortrainer';
+// import ForCustomers from './components/forcustomer';
+import ForTrainers from './components/fortrainer';
 // import Calendar from './components/calendar';
 // import Stats from './components/stats';
 
@@ -9,8 +9,8 @@ import ForCustomers from './components/forcustomer';
 function App() {
   return (
     <div className="App">
-      {/* <ForTrainers /> */}
-      <ForCustomers />
+      <ForTrainers />
+      {/* <ForCustomers /> */}
     </div>
   );
 }
