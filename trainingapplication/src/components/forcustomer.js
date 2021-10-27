@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-// import {AgGridReact} from 'ag-grid-react';
-// import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-bootstrap.css';
+import { AgGridReact } from 'ag-grid-react';
+import "ag-grid-community/dist/styles/ag-grid.css";
+import "ag-grid-community/dist/styles/ag-theme-bootstrap.css";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-// import Activity from '.../react-bootstrap-icons/dist/icons/bicycle';
+import 'bootstrap/dist/css/bootstrap.css';
+// import Activity from 'react-bootstrap-icons/dist/icons/activity'
 // import Calendar from '.../react-bootstrap-icons/dist/icons/calendar2-date';
 // import Time from '.../react-bootstrap-icons/dist/icons/stopwatch';
 // import Customer from '.../react-bootstrap-icons/dist/icons/person-circle';
@@ -12,8 +12,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // import Email from '.../react-bootstrap-icons/dist/icons/envelope-open';
 // import Phone from '.../react-bootstrap-icons/dist/icons/telephone';
 
-
-import Table from 'react-bootstrap/Table';
 
 
 function ForCustomers() {
@@ -23,47 +21,35 @@ function ForCustomers() {
     useEffect(() => {
         fetch('https://customerrest.herokuapp.com/api/trainings')
             .then(response => response.json())
-            .then(responseData => setTrainings(responseData.content))
+            .then(data => {
+                setTrainings(data.content)
+                console.log(data.content)
+            })
             .catch(err => console.error(err))
     }, [])
 
-    const columns = trainings.map((content, index) =>
-        <tr key={index}>
-            <td>{content.date}</td>
-            <td>{content.duration}</td>
-            <td>{content.activity}</td>
-            <td>{content.firstname}</td>
-            {/* <td>{content.activity}</td> */}
-            {/* <td>{content.activity}</td> */}
-        </tr>
-    )
+
+    const columns = [
+        // {field: 'id'},
+        { headerName: "Date", field: 'date', },
+        { headerName: "Duration", field: 'duration' },
+        { headerName: "Activity", field: 'activity' },
+        { headerName: "First Name", field: 'firstname' },
+        { headerName: "City", field: 'city' },
+        { headerName: "Email", field: 'email', },
+        { headerName: "Phone", field: 'phone' },
+    ]
 
     return (
-        <div>
-            <Table responsive>
-                <thead >
-                    <tr style={{ fontSize: '18px', alignItems: 'center' }}>
-                        {/* <th>Date <Calendar /></th>
-                        <th>Duration <Time /></th>
-                        <th>Activity <Activity /></th>
-                        <th>Customer <Customer /></th>
-                        <th>City <City /></th>
-                        <th>Email <Email /></th>
-                        <th>Phone <Phone /></th> */}
 
-                    </tr>
-                </thead>
-                <tbody style={{ fontSize: '14px' }}>
-                    {columns}
-                </tbody>
-            </Table>
+        <div className="ag-theme-bootstrap" style={{ width: 1350, height: 700 }}>
 
-            {/* <AgGridReact
-            rowData={trainings}
-            columnDefs={columns}
-            // pagination={true}
-            // paginationPageSize={8}
-            /> */}
+            <AgGridReact
+                rowData={trainings}
+                columnDefs={columns}
+                // pagination={true}
+                // paginationPageSize={8}
+            />
 
         </div>
     )

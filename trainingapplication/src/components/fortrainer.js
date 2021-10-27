@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 import { AgGridReact } from 'ag-grid-react';
-// import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-material.css';
-
-//import 'bootstrap/dist/css/bootstrap.min.css';
+import "ag-grid-community/dist/styles/ag-grid.css";
+import "ag-grid-community/dist/styles/ag-theme-bootstrap.css";
 
 function ForTrainers() {
 
@@ -13,7 +11,7 @@ function ForTrainers() {
     useEffect(() => {
         fetch('https://customerrest.herokuapp.com/api/customers')
             .then(response => response.json())
-            .then(data => { 
+            .then(data => {
                 setCustomers(data.content)
                 console.log(data.content)
             })
@@ -24,32 +22,25 @@ function ForTrainers() {
         // {field: 'id'},
         { headerName: "Name", field: 'firstname' },
         { headerName: "Surname", field: 'lastname' },
-        { headerName: "Street adress", field: 'streetadress' },
+        { headerName: "Street adress", field: 'streetaddress' },
         { headerName: "Post Code", field: 'postcode' },
         { headerName: "City", field: 'city' },
         { headerName: "Email", field: 'email', },
-        { headerName: "Phone", field: 'phone'},
+        { headerName: "Phone", field: 'phone' },
     ]
 
-      return (
+    return (
 
-        
-      
-            <div className="ag-theme-material"  style={{ width: 1700, height: 700}}>
+        <div className="ag-theme-bootstrap" style={{ width: 1350, height: 700 }}>
 
-                
-                <AgGridReact
-                    
-                    rowData={customers}
-                    columnDefs={columns}
-                      
-                />
-{/* 
-          <AgGridColumn field="firstname" width={100} />
-          <AgGridColumn field="lastname" width={100} />
-          <AgGridColumn field="streetadress" width={100} /> */}
+            <AgGridReact
+                rowData={customers}
+                columnDefs={columns}
+            // pagination={true}
+            // paginationPageSize={8}
+            />
 
-            </div>
+        </div>
     )
 }
 
