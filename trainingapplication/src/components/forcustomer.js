@@ -4,15 +4,7 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-bootstrap.css";
 
 import 'bootstrap/dist/css/bootstrap.css';
-// import Activity from 'react-bootstrap-icons/dist/icons/activity'
-// import Calendar from '.../react-bootstrap-icons/dist/icons/calendar2-date';
-// import Time from '.../react-bootstrap-icons/dist/icons/stopwatch';
-// import Customer from '.../react-bootstrap-icons/dist/icons/person-circle';
-// import City from '.../react-bootstrap-icons/dist/icons/geo-alt';
-// import Email from '.../react-bootstrap-icons/dist/icons/envelope-open';
-// import Phone from '.../react-bootstrap-icons/dist/icons/telephone';
-
-
+import Dayjs from 'dayjs'
 
 function ForCustomers() {
 
@@ -28,30 +20,40 @@ function ForCustomers() {
             .catch(err => console.error(err))
     }, [])
 
-
     const columns = [
         // {field: 'id'},
-        { headerName: "Date", field: 'date', },
-        { headerName: "Duration", field: 'duration' },
-        { headerName: "Activity", field: 'activity' },
-        { headerName: "First Name", field: 'firstname' },
-        { headerName: "City", field: 'city' },
-        { headerName: "Email", field: 'email', },
-        { headerName: "Phone", field: 'phone' },
+
+        {
+            headerName: "Date", field: 'date', sortable: true, filter: true, floatingFilter: true, maxWidth: 138,
+            cellRendererFramework: () => (Dayjs().format('DD/MM/YY'))
+        },
+        { headerName: "Duration in min", field: 'duration', filter: true, sortable: true, floatingFilter: true, maxWidth: 130 },
+        { headerName: "Activity", field: 'activity', filter: true, sortable: true, floatingFilter: true },
+        { headerName: "First Name", field: 'firstname', filter: true, sortable: true, floatingFilter: true },
+        { headerName: "City", field: 'city', sortable: true, filter: true, floatingFilter: true },
+        { headerName: "Email", field: 'email', sortable: true, filter: true, floatingFilter: true },
+        { headerName: "Phone", field: 'phone', sortable: true, filter: true, floatingFilter: true },
     ]
 
     return (
+        <div>
 
-        <div className="ag-theme-bootstrap" style={{ width: 1350, height: 700 }}>
+            <div className="ag-theme-bootstrap" style={{ width: 1350, height: 700 }}>
 
-            <AgGridReact
-                rowData={trainings}
-                columnDefs={columns}
+                <AgGridReact
+                    rowData={trainings}
+                    columnDefs={columns}
+                    enableRangeSelection={true}
+
                 // pagination={true}
                 // paginationPageSize={8}
-            />
+                />
+
+            </div>
+
 
         </div>
+
     )
 }
 

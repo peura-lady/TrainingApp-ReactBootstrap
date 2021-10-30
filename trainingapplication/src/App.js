@@ -9,7 +9,7 @@ import ForTrainers from './components/fortrainer';
 function App() {
   return (
     <div className="App">
-      <ForTrainers />
+      {/* <ForTrainers /> */}
       <ForCustomers />
     </div>
   );
