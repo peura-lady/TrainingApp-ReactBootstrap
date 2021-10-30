@@ -22,28 +22,47 @@ function ForCustomers() {
 
     const columns = [
         // {field: 'id'},
-
         {
-            headerName: "Date", field: 'date', sortable: true, filter: true, floatingFilter: true, maxWidth: 138,
+            headerName: "Date", field: 'date', sortable: true, filter: true, floatingFilter: true, maxWidth: 100,
+            cellStyle: { fontWeight: '400'},
             cellRendererFramework: () => (Dayjs().format('DD/MM/YY'))
         },
-        { headerName: "Duration in min", field: 'duration', filter: true, sortable: true, floatingFilter: true, maxWidth: 130 },
-        { headerName: "Activity", field: 'activity', filter: true, sortable: true, floatingFilter: true },
-        { headerName: "First Name", field: 'firstname', filter: true, sortable: true, floatingFilter: true },
-        { headerName: "City", field: 'city', sortable: true, filter: true, floatingFilter: true },
-        { headerName: "Email", field: 'email', sortable: true, filter: true, floatingFilter: true },
-        { headerName: "Phone", field: 'phone', sortable: true, filter: true, floatingFilter: true },
+        {
+            headerName: "Duration in min", field: 'duration', filter: true, sortable: true, floatingFilter: true, maxWidth: 160,
+            cellStyle: { fontWeight: '400' }
+        },
+        {
+            headerName: "Activity", field: 'activity', filter: true, sortable: true, floatingFilter: true, maxWidth: 180,
+            cellStyle: { textAlign: 'left', fontWeight: '400' }
+        },
+        {
+            headerName: "First Name", field: 'firstname', filter: true, sortable: true, floatingFilter: true,
+            cellStyle: { textAlign: 'left' }
+        },
+        {
+            headerName: "City", field: 'city', sortable: true, filter: true, floatingFilter: true,
+            cellStyle: { textAlign: 'left', color: 'red', fontWeight: '400' }
+        },
+        {
+            headerName: "Email", field: 'email', sortable: true, filter: true, floatingFilter: true,
+            cellStyle: { textAlign: 'left', fontWeight: '400' }
+        },
+        {
+            headerName: "Phone", field: 'phone', sortable: true, filter: true, floatingFilter: true,
+            cellStyle: { textAlign: 'left', fontWeight: '400' }
+        },
     ]
 
     return (
         <div>
 
-            <div className="ag-theme-bootstrap" style={{ width: 1350, height: 700 }}>
+            <div className="ag-theme-bootstrap" style={{ width: 1400, height: 700, fontWeight: '700' }}>
 
                 <AgGridReact
                     rowData={trainings}
                     columnDefs={columns}
                     enableRangeSelection={true}
+                    defaultColDef={{ resizable: true }}
 
                 // pagination={true}
                 // paginationPageSize={8}
