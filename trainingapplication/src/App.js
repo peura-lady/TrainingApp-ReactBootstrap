@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 
 import { Button, Offcanvas, Tab, Row, Col, Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import Dashboard from './components/dashboard';
+
+// import Dashboard from './components/dashboard';
 // import ForCustomers from './components/forcustomer';
 import ForTrainers from './components/fortrainer';
 // import Calendar from './components/calendar';
@@ -27,114 +28,119 @@ function App() {
 
 
   return (
-
-    <div style={{ backgroundColor: '#565e69', width: '100%', height: '100px' }}>
-
-      <Button variant="primary" onClick={handleShow}
-        style={{ backgroundColor: '#877e8f', width: '175px', height: '100px', border: '2px solid #877e8f', fontSize: '23px', fontWeight: '700', outline: 'none' }}>
-        Menu
-      </Button>
+    <div>
 
 
-      <Dashboard / >
+
+      <div style={{ backgroundColor: '#565e69', width: '100%', height: '100px' }}>
+
+        <Button variant="primary" onClick={handleShow}
+          style={{ backgroundColor: '#877e8f', width: '175px', height: '100px', border: '2px solid #877e8f', fontSize: '23px', fontWeight: '700', outline: 'none' }}>
+          Menu
+        </Button>
+
+
+
         
-      <ForTrainers / >
+
+        <ForTrainers />
 
 
-      <Offcanvas show={menu} onHide={handleClose} style={{ backgroundColor: '#565e69' }}>
-        <Offcanvas.Header closeButton >
 
-          <Offcanvas.Title
-            style={{ color: '#bd9cd9', fontSize: '27px', fontWeight: '700', paddingTop: '19px', paddingLeft: '34px', height: '84px', width: '275px', borderBottom: '1px solid #bd9cd9' }}>
-            Menu
-          </Offcanvas.Title>
-        </Offcanvas.Header>
-        <Offcanvas.Body>
+        <Offcanvas show={menu} onHide={handleClose} style={{ backgroundColor: '#565e69' }}>
+          <Offcanvas.Header closeButton >
+
+            <Offcanvas.Title
+              style={{ color: '#bd9cd9', fontSize: '27px', fontWeight: '700', paddingTop: '19px', paddingLeft: '34px', height: '84px', width: '275px', borderBottom: '1px solid #bd9cd9' }}>
+              Menu
+            </Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
 
 
-          <Tab.Container id="left-tabs-example">
-            <Row>
-              <Col md={6}>
+            <Tab.Container id="left-tabs-example">
+              <Row>
+                <Col md={6}>
 
-                <Nav variant="pills" className="flex-column">
+                  <Nav variant="pills" className="flex-column">
 
-                  <Nav.Item >
-                    <Nav.Link eventKey="first" variant="secondary"
-                      style={{ cursor: "pointer", color: "#877e8f", fontSize: '24px', fontWeight: '400', paddingTop: '50px', paddingLeft: '20px', width: '400px'}}>
-                      Dashboard  <Home />
-                    </Nav.Link>
-                  </Nav.Item>
+                    <Nav.Item >
+                      <Nav.Link eventKey="first" variant="secondary"
+                        style={{ cursor: "pointer", color: "#877e8f", fontSize: '24px', fontWeight: '400', paddingTop: '50px', paddingLeft: '20px', width: '400px' }}>
+                        Dashboard  <Home />
+                      </Nav.Link>
+                    </Nav.Item>
 
-                  <Nav.Item>
-                    <Nav.Link eventKey="second"
-                      style={{ cursor: "pointer", color: "#877e8f", fontSize: '24px', fontWeight: '400', paddingTop: '50px', paddingLeft: '20px', width: '400px' }} >
-                      Customers  <Customer />
-                    </Nav.Link>
-                  </Nav.Item>
+                    <Nav.Item>
+                      <Nav.Link eventKey="second"
+                        style={{ cursor: "pointer", color: "#877e8f", fontSize: '24px', fontWeight: '400', paddingTop: '50px', paddingLeft: '20px', width: '400px' }} >
+                        Customers  <Customer />
+                      </Nav.Link>
+                    </Nav.Item>
 
-                  <Nav.Item>
-                    <Nav.Link eventKey="third"
-                      style={{ cursor: "pointer", color: "#877e8f", fontSize: '24px', fontWeight: '400', paddingTop: '50px', paddingLeft: '20px', width: '400px' }} >
-                      Trainings <Activity />
-                    </Nav.Link>
-                  </Nav.Item>
+                    <Nav.Item>
+                      <Nav.Link eventKey="third"
+                        style={{ cursor: "pointer", color: "#877e8f", fontSize: '24px', fontWeight: '400', paddingTop: '50px', paddingLeft: '20px', width: '400px' }} >
+                        Trainings <Activity />
+                      </Nav.Link>
+                    </Nav.Item>
 
-                  <Nav.Item>
-                    <Nav.Link eventKey="fourth"
-                      style={{ cursor: "pointer", color: "#877e8f", fontSize: '24px', fontWeight: '400', paddingTop: '50px', paddingLeft: '20px', width: '400px' }} >
-                      Calendar <Calendar />
-                    </Nav.Link>
-                  </Nav.Item>
+                    <Nav.Item>
+                      <Nav.Link eventKey="fourth"
+                        style={{ cursor: "pointer", color: "#877e8f", fontSize: '24px', fontWeight: '400', paddingTop: '50px', paddingLeft: '20px', width: '400px' }} >
+                        Calendar <Calendar />
+                      </Nav.Link>
+                    </Nav.Item>
 
-                  <Nav.Item>
-                    <Nav.Link eventKey="fifth"
-                      style={{ cursor: "pointer", color: "#877e8f", fontSize: '24px', fontWeight: '400', paddingTop: '50px', paddingLeft: '20px', width: '400px' }} >
-                      Statistics <Statsistics />
-                    </Nav.Link>
-                  </Nav.Item>
+                    <Nav.Item>
+                      <Nav.Link eventKey="fifth"
+                        style={{ cursor: "pointer", color: "#877e8f", fontSize: '24px', fontWeight: '400', paddingTop: '50px', paddingLeft: '20px', width: '400px' }} >
+                        Statistics <Statsistics />
+                      </Nav.Link>
+                    </Nav.Item>
 
-                </Nav>
-              </Col>
+                  </Nav>
+                </Col>
 
-              <Col md={6}>
-                <Tab.Content>
+                <Col md={6}>
+                  <Tab.Content>
 
-                  <Tab.Pane eventKey="first" >
+                    <Tab.Pane eventKey="first" >
 
-                    {/* <Dashboard / > */}
+                      {/* <Dashboard / > */}
 
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="second">
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="second">
 
-                    {/* <ForTrainers / > */}
+                      {/* <ForTrainers / > */}
 
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="third">
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="third">
 
-                    {/* <ForCustomers / > */}
+                      {/* <ForCustomers / > */}
 
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="fourth">
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="fourth">
 
-                    {/* <Calendar / > */}
+                      {/* <Calendar / > */}
 
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="fifth">
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="fifth">
 
-                    {/* <Stats / > */}
+                      {/* <Stats / > */}
 
-                  </Tab.Pane>
+                    </Tab.Pane>
 
-                </Tab.Content>
-              </Col>
-            </Row>
-          </Tab.Container>
+                  </Tab.Content>
+                </Col>
+              </Row>
+            </Tab.Container>
 
-        </Offcanvas.Body>
-      </Offcanvas>
+          </Offcanvas.Body>
+        </Offcanvas>
 
+      </div>
     </div>
-
 
 
   );

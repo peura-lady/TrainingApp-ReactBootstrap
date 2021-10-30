@@ -24,7 +24,7 @@ function ForCustomers() {
         // {field: 'id'},
         {
             headerName: "Date", field: 'date', sortable: true, filter: true, floatingFilter: true, maxWidth: 100,
-            cellStyle: { fontWeight: '400'},
+            cellStyle: { fontWeight: '400' },
             cellRendererFramework: () => (Dayjs().format('DD/MM/YY'))
         },
         {
