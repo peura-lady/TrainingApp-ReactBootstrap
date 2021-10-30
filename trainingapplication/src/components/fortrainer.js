@@ -19,14 +19,34 @@ function ForTrainers() {
     }, [])
 
     const columns = [
-        // {field: 'id'},
-        { headerName: "Name", field: 'firstname' },
-        { headerName: "Surname", field: 'lastname' },
-        { headerName: "Street adress", field: 'streetaddress' },
-        { headerName: "Post Code", field: 'postcode' },
-        { headerName: "City", field: 'city' },
-        { headerName: "Email", field: 'email', },
-        { headerName: "Phone", field: 'phone' },
+        {
+            headerName: "Name", field: 'firstname', filter: true, sortable: true, floatingFilter: true, maxWidth: 160,
+            cellStyle: { fontWeight: '400' }
+        },
+        {
+            headerName: "Surname", field: 'lastname', filter: true, sortable: true, floatingFilter: true, maxWidth: 160,
+            cellStyle: { fontWeight: '400' }
+        },
+        {
+            headerName: "Street adress", field: 'streetaddress', filter: true, sortable: true, floatingFilter: true, maxWidth: 200,
+            cellStyle: { fontWeight: '400' }
+        },
+        {
+            headerName: "Post Code", field: 'postcode', filter: true, sortable: true, floatingFilter: true, maxWidth: 120,
+            cellStyle: { fontWeight: '400' }
+        },
+        {
+            headerName: "City", field: 'city', filter: true, sortable: true, floatingFilter: true, maxWidth: 120,
+            cellStyle: { fontWeight: '400' }
+        },
+        {
+            headerName: "Email", field: 'email', filter: true, sortable: true, floatingFilter: true, maxWidth: 160,
+            cellStyle: { fontWeight: '400' }
+        },
+        {
+            headerName: "Phone", field: 'phone', filter: true, sortable: true, floatingFilter: true, maxWidth: 160,
+            cellStyle: { fontWeight: '400' }
+        },
     ]
 
     return (
@@ -36,6 +56,9 @@ function ForTrainers() {
             <AgGridReact
                 rowData={customers}
                 columnDefs={columns}
+                enableRangeSelection={true}
+                defaultColDef={{ resizable: true }}
+
             // pagination={true}
             // paginationPageSize={8}
             />
