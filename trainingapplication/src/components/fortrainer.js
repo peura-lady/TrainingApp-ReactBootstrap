@@ -43,7 +43,7 @@ function ForTrainers() {
     // };
 
     const deleteCustomer = url => {
-        console.log(url);
+        console.log(url.value);
     };
 
     const columns = [
@@ -80,7 +80,7 @@ function ForTrainers() {
             filter: false,
             sortable: false,
             width: 120,
-            field: "links[0].href",
+            field: "links.0.href",
             cellRendererFramework: (params) => (
                 // <Button style={{ height: '10', width: '70px', backgroundColor: '#bd3a57', border: '1px solid #bd3a57', paddingTop: '0px', alignItems: 'right', outline: 'none' }}
                 //     onClick={() => deleteCustomer(params.value)}>
@@ -105,6 +105,7 @@ function ForTrainers() {
                     columnDefs={columns}
                     enableRangeSelection={true}
                     defaultColDef={{ resizable: true }}
+                    rowHeight={40}
 
                 // pagination={true}
                 // paginationPageSize={8}
