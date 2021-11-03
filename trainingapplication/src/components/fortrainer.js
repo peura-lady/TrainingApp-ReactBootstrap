@@ -11,7 +11,7 @@ import Delete from 'react-bootstrap-icons/dist/icons/trash'
 function ForTrainers() {
 
     const [customers, setCustomers] = useState([]);
-    // const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(true);
 
     useEffect(() => {
         fetchCustomers();
@@ -26,24 +26,20 @@ function ForTrainers() {
             .catch(err => console.error(err))
     };
 
-    // const deleteCustomer = url => {
-    //     if (window.confirm('Are you sure?')) {
-    //         fetch(url, { method: 'DELETE' })
-    //             .then(response => {
-    //                 if (response.ok) {
-    //                     setOpen(!open);
-    //                     fetchCustomers();
-    //                 }
-    //                 else {
-    //                     alert('Something went wrong')
-    //                 }
-    //             })
-    //             .catch((err) => console.log(err));
-    //     }
-    // };
-
     const deleteCustomer = url => {
-        console.log(url.value);
+        if (window.confirm('Are you sure?')) {
+            fetch(url, { method: 'DELETE' })
+                .then(response => {
+                    if (response.ok) {
+                        setOpen(!open);
+                        fetchCustomers();
+                    }
+                    else {
+                        alert('Something went wrong')
+                    }
+                })
+                .catch((err) => console.log(err));
+        }
     };
 
     const columns = [
@@ -82,16 +78,10 @@ function ForTrainers() {
             width: 120,
             field: "links.0.href",
             cellRendererFramework: (params) => (
-                // <Button style={{ height: '10', width: '70px', backgroundColor: '#bd3a57', border: '1px solid #bd3a57', paddingTop: '0px', alignItems: 'right', outline: 'none' }}
-                //     onClick={() => deleteCustomer(params.value)}>
-                //     <Delete style={{ fontSize: '15px' }} />
-                // </Button>
-
-                <Button 
-                    onClick={() => deleteCustomer(params)}>
+                <Button style={{ height: '10', width: '70px', backgroundColor: '#bd3a57', border: '1px solid #bd3a57', paddingTop: '0px', alignItems: 'right', outline: 'none' }}
+                    onClick={() => deleteCustomer(params.value)}>
                     <Delete style={{ fontSize: '15px' }} />
                 </Button>
-
             )
         },
     ]

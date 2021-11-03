@@ -66,7 +66,7 @@ function App() {
 
                     <Nav.Item >
                       <Nav.Link eventKey="first" variant="secondary"
-                        style={{ cursor: "pointer", color: "#877e8f", fontSize: '24px', fontWeight: '400', paddingTop: '50px', paddingLeft: '20px', width: '400px' }}>
+                        style={{ cursor: "pointer", color: "#877e8f", ariaSelected:'false', fontSize: '24px', fontWeight: '400', paddingTop: '50px', paddingLeft: '20px', width: '400px' }}>
                         Dashboard  <Home />
                       </Nav.Link>
                     </Nav.Item>
