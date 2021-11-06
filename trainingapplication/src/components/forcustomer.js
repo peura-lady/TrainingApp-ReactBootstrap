@@ -13,6 +13,7 @@ function ForCustomers() {
 
     const [trainings, setTrainings] = useState([]);
     const [open, setOpen] = useState(true);
+    // const toggleSetOpen = () => setOpen(!open);
 
     useEffect(() => {
         fetchTrainers();
@@ -22,12 +23,14 @@ function ForCustomers() {
         fetch('https://customerrest.herokuapp.com/gettrainings')
             .then(response => response.json())
             .then(data => {
-                // setTrainings(data.content)
                 setTrainings(data)
-                // console.log(data.content)
             })
             .catch(err => console.error(err))
     };
+
+    // const handleClose = () => {
+    //     setOpen(false);
+    // }
 
     const deleteCustomer = url => {
         if (window.confirm('Are you sure?')) {
@@ -46,8 +49,9 @@ function ForCustomers() {
     };
 
     // const deleteCustomer = url => {
-    //     console.log(url)
-    //         };
+    //     console.log(url);
+    // };
+
 
     const columns = [
         
@@ -89,10 +93,13 @@ function ForCustomers() {
             filter: false,
             sortable: false,
             width: 120,
-            field: "links.0.href",
+            // field: "links.0.href",
+            field: "customer.id",
             cellRendererFramework: (params) => (
                 <Button className="delete-btn" style={{ height: '10', width: '70px', backgroundColor: '#bd3a57', border: '1px solid #bd3a57', paddingTop: '5px', alignItems: 'right', outline: 'none', marginTop: '10px' }}
                     onClick={() => deleteCustomer(params.value)}>
+                    {/* onClick={() => deleteCustomer(params.value)}> */}
+                    {/* onClick={() => toggleSetOpen => deleteCustomer(params.value)}> */}
                     <Delete style={{ fontSize: '15px' }} />
                 </Button>
             )
@@ -101,7 +108,7 @@ function ForCustomers() {
 
     return (
         <div >
-            <div className="ag-theme-bootstrap" style={{ width: 1600, height: 600, fontWeight: '700', lineHeight: '43px', fontSize: '19px', paddingLeft: '185px', paddingTop: '50px' }}>
+            <div className="ag-theme-bootstrap" style={{ width: 1575, height: 600, fontWeight: '700', fontSize: '19px', paddingLeft: '100px'}}>
                 <AgGridReact
                     rowData={trainings}
                     columnDefs={columns}
@@ -115,10 +122,16 @@ function ForCustomers() {
 
             <div>
 
-                {/* <Toast show={open} delay={3000} autohide onClose={deleteCustomer}>
+                {/* <Toast show={open} delay={3000} autohide onClose={handleClose}>
 
                     <Toast.Body>Your Customer was deleted</Toast.Body>
                 </Toast> */}
+
+                {/* <Toast show={open} delay={3000} onClose={handleClose} style={{marginButton: '10px'}}> */}
+                {/* <Toast show={open} delay={3000} onClose={toggleSetOpen} style={{marginButton: '10px'}}> */}
+
+          {/* <Toast.Body>Your Customer was deleted</Toast.Body>
+        </Toast> */}
 
 
             </div>

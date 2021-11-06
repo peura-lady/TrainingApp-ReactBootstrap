@@ -38,13 +38,22 @@
 }
 
 .nav-link:hover {
-  background-color: antiquewhite !important;
+  background-color: #9fa3e3 !important;
   opacity: 0.5;
+  border: 2px solid #9fa3e3;
+}
+
+.addCustomerBtn:hover {
+  background-color: #9fa3e3 !important;
+  opacity: 0.5;
+  border: 2px solid #9fa3e3;
 }
 .btn-primary:hover {
-  background-color: antiquewhite !important;
+  background-color: #9fa3e3 !important;
+  border: 2px solid #9fa3e3;
 }
 
 .delete-btn:hover {
   background-color: rgb(185, 18, 40) !important;
 }
+

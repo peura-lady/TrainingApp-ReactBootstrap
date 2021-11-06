@@ -32,22 +32,22 @@ function App() {
 
 
 
-      <div style={{ backgroundColor: '#565e69', width: '100%', height: '100px' }}>
+      <div style={{ backgroundColor: '#ad95ba', width: '100%', height: '80px' }}>
 
         <Button variant="primary" onClick={handleShow}
-          style={{ backgroundColor: '#877e8f', width: '175px', height: '100px', border: '2px solid #877e8f', fontSize: '23px', fontWeight: '700', outline: 'none' }}>
+          style={{ backgroundColor: '#ad95ba', color: '#e8d8e1', width: '200px', height: '80px', border: '2px solid #ad95ba', fontSize: '23px', fontWeight: '700', outline: 'none' }}>
           Menu
         </Button>
 
         <ForTrainers />
-        <ForCustomers />
+        {/* <ForCustomers /> */}
 
 
-        <Offcanvas show={menu} onHide={handleClose} style={{ backgroundColor: '#565e69' }}>
+        <Offcanvas show={menu} onHide={handleClose} style={{ backgroundColor: '#ad95ba' }}>
           <Offcanvas.Header closeButton >
 
             <Offcanvas.Title
-              style={{ color: '#bd9cd9', fontSize: '27px', fontWeight: '700', paddingTop: '19px', paddingLeft: '34px', height: '84px', width: '275px', borderBottom: '1px solid #bd9cd9' }}>
+              style={{ color: '#e8d8e1', fontSize: '27px', fontWeight: '700', paddingTop: '19px', paddingLeft: '34px', height: '70px', width: '275px', borderBottom: '1px solid #e8d8e1' }}>
               Menu
             </Offcanvas.Title>
           </Offcanvas.Header>
@@ -62,35 +62,35 @@ function App() {
 
                     <Nav.Item >
                       <Nav.Link eventKey="first" variant="secondary"
-                        style={{ cursor: "pointer", color: "#877e8f", ariaSelected: 'false', fontSize: '24px', fontWeight: '400', paddingTop: '50px', paddingLeft: '20px', width: '400px' }}>
+                        style={{ cursor: "pointer", color: "#e8d8e1", ariaSelected: 'false', fontSize: '24px', fontWeight: '400', paddingTop: '50px', paddingLeft: '20px', width: '370px' }}>
                         Dashboard  <Home />
                       </Nav.Link>
                     </Nav.Item>
 
                     <Nav.Item>
                       <Nav.Link eventKey="second"
-                        style={{ cursor: "pointer", color: "#877e8f", fontSize: '24px', fontWeight: '400', paddingTop: '50px', paddingLeft: '20px', width: '400px' }} >
+                        style={{ cursor: "pointer", color: "#e8d8e1", fontSize: '24px', fontWeight: '400', paddingTop: '50px', paddingLeft: '20px', width: '370px' }} >
                         Customers  <Customer />
                       </Nav.Link>
                     </Nav.Item>
 
                     <Nav.Item>
                       <Nav.Link eventKey="third"
-                        style={{ cursor: "pointer", color: "#877e8f", fontSize: '24px', fontWeight: '400', paddingTop: '50px', paddingLeft: '20px', width: '400px' }} >
+                        style={{ cursor: "pointer", color: "#e8d8e1", fontSize: '24px', fontWeight: '400', paddingTop: '50px', paddingLeft: '20px', width: '370px' }} >
                         Trainings <Activity />
                       </Nav.Link>
                     </Nav.Item>
 
                     <Nav.Item>
                       <Nav.Link eventKey="fourth"
-                        style={{ cursor: "pointer", color: "#877e8f", fontSize: '24px', fontWeight: '400', paddingTop: '50px', paddingLeft: '20px', width: '400px' }} >
+                        style={{ cursor: "pointer", color: "#e8d8e1", fontSize: '24px', fontWeight: '400', paddingTop: '50px', paddingLeft: '20px', width: '370px' }} >
                         Calendar <Schedule />
                       </Nav.Link>
                     </Nav.Item>
 
                     <Nav.Item>
                       <Nav.Link eventKey="fifth"
-                        style={{ cursor: "pointer", color: "#877e8f", fontSize: '24px', fontWeight: '400', paddingTop: '50px', paddingLeft: '20px', width: '400px' }} >
+                        style={{ cursor: "pointer", color: "#e8d8e1", fontSize: '24px', fontWeight: '400', paddingTop: '50px', paddingLeft: '20px', width: '370px' }} >
                         Statistics <Statsistics />
                       </Nav.Link>
                     </Nav.Item>

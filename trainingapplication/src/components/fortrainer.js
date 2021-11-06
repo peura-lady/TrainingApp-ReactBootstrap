@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import AddCustomer from './addCustomer';
 
 import { AgGridReact } from 'ag-grid-react';
 import "ag-grid-community/dist/styles/ag-grid.css";
@@ -12,6 +13,11 @@ function ForTrainers() {
 
     const [customers, setCustomers] = useState([]);
     const [open, setOpen] = useState(true);
+    const toggleSetOpen = () => setOpen(!open);
+
+    //     const handleClose = () => {
+    //     setOpen(false);
+    // }
 
     useEffect(() => {
         fetchCustomers();
@@ -41,11 +47,35 @@ function ForTrainers() {
                 .catch((err) => console.log(err));
         }
     };
+    
+    // const addCar = car => {
+    //     fetch('http://carrestapi.herokuapp.com/cars/', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-type': 'application/json'
+    //         },
+    //         body: JSON.stringify(car)
+    //     })
+    //         .then(response => fetchCars())
+    //         .catch((err) => console.log(err));
+    // }
+
+        const addCustomer = href => {
+        fetch('https://customerrest.herokuapp.com/api/customers', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(href)
+        })
+            .then(response => fetchCustomers())
+            .catch((err) => console.log(err));
+    }
 
     const columns = [
         {
             headerName: "Name", field: 'firstname', filter: true, sortable: true, floatingFilter: true, maxWidth: 190,
-            cellStyle: { fontWeight: '600', fontSize: '17px'}
+            cellStyle: { fontWeight: '600', fontSize: '17px' }
         },
         {
             headerName: "Surname", field: 'lastname', filter: true, sortable: true, floatingFilter: true, maxWidth: 160,
@@ -61,7 +91,7 @@ function ForTrainers() {
         },
         {
             headerName: "City", field: 'city', filter: true, sortable: true, floatingFilter: true, maxWidth: 120,
-            cellStyle: { fontWeight: '400', fontSize: '17px'}
+            cellStyle: { fontWeight: '400', fontSize: '17px' }
         },
         {
             headerName: "Email", field: 'email', filter: true, sortable: true, floatingFilter: true, maxWidth: 200,
@@ -89,24 +119,32 @@ function ForTrainers() {
     return (
 
         <div >
-            <div className="ag-theme-bootstrap" style={{ width: 1600, height: 600, fontWeight: '700', lineHeight: '43px', fontSize: '19px', paddingLeft: '185px', paddingTop: '50px' }}>
+            <AddCustomer addCustomer={addCustomer} />
+            <div className="ag-theme-bootstrap" style={{ width: 1550, height: 600, fontWeight: '700', lineHeight: '43px', fontSize: '19px', paddingLeft: '140px', paddingTop: '10px'}}>
                 <AgGridReact
                     rowData={customers}
                     columnDefs={columns}
                     enableRangeSelection={true}
                     defaultColDef={{ resizable: true }}
-                    rowHeight={55}
+                    rowHeight={60}
                     pagination={true}
                     paginationPageSize={8}
                 />
             </div>
 
-            <div>
-
                 {/* <Toast show={open} delay={3000} autohide onClose={deleteCustomer}>
 
                     <Toast.Body>Your Customer was deleted</Toast.Body>
                 </Toast> */}
+
+                {/* <Toast show={open} delay={3000} onClose={handleClose} style={{marginButton: '10px'}}> */}
+                <Toast show={open} delay={3000} autohide onClose={toggleSetOpen} style={{ marginButton: '10px' }}>
+
+                    <Toast.Body>Your Customer was deleted</Toast.Body>
+                </Toast>
+
+            <div>
+            
 
 
             </div>
