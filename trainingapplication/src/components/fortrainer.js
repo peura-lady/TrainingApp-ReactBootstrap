@@ -44,32 +44,32 @@ function ForTrainers() {
 
     const columns = [
         {
-            headerName: "Name", field: 'firstname', filter: true, sortable: true, floatingFilter: true, maxWidth: 160,
-            cellStyle: { fontWeight: '400' }
+            headerName: "Name", field: 'firstname', filter: true, sortable: true, floatingFilter: true, maxWidth: 190,
+            cellStyle: { fontWeight: '600', fontSize: '17px'}
         },
         {
             headerName: "Surname", field: 'lastname', filter: true, sortable: true, floatingFilter: true, maxWidth: 160,
-            cellStyle: { fontWeight: '400' }
+            cellStyle: { fontWeight: '600', fontSize: '17px' }
         },
         {
             headerName: "Street adress", field: 'streetaddress', filter: true, sortable: true, floatingFilter: true, maxWidth: 200,
-            cellStyle: { fontWeight: '400' }
+            cellStyle: { fontWeight: '400', fontSize: '17px' }
         },
         {
-            headerName: "Post Code", field: 'postcode', filter: true, sortable: true, floatingFilter: true, maxWidth: 120,
-            cellStyle: { fontWeight: '400' }
+            headerName: "Post Code", field: 'postcode', filter: true, sortable: true, floatingFilter: true, maxWidth: 140,
+            cellStyle: { fontWeight: '400', fontSize: '17px' }
         },
         {
             headerName: "City", field: 'city', filter: true, sortable: true, floatingFilter: true, maxWidth: 120,
-            cellStyle: { fontWeight: '400' }
+            cellStyle: { fontWeight: '400', fontSize: '17px'}
         },
         {
-            headerName: "Email", field: 'email', filter: true, sortable: true, floatingFilter: true, maxWidth: 160,
-            cellStyle: { fontWeight: '400' }
+            headerName: "Email", field: 'email', filter: true, sortable: true, floatingFilter: true, maxWidth: 200,
+            cellStyle: { fontWeight: '400', fontSize: '17px' }
         },
         {
             headerName: "Phone", field: 'phone', filter: true, sortable: true, floatingFilter: true, maxWidth: 160,
-            cellStyle: { fontWeight: '400' }
+            cellStyle: { fontWeight: '400', fontSize: '17px' }
         },
         {
             headerName: "",
@@ -78,7 +78,7 @@ function ForTrainers() {
             width: 120,
             field: "links.0.href",
             cellRendererFramework: (params) => (
-                <Button style={{ height: '10', width: '70px', backgroundColor: '#bd3a57', border: '1px solid #bd3a57', paddingTop: '0px', alignItems: 'right', outline: 'none' }}
+                <Button className="delete-btn" style={{ height: '10', width: '70px', backgroundColor: '#bd3a57', border: '1px solid #bd3a57', paddingTop: '5px', alignItems: 'right', outline: 'none', marginTop: '10px' }}
                     onClick={() => deleteCustomer(params.value)}>
                     <Delete style={{ fontSize: '15px' }} />
                 </Button>
@@ -89,16 +89,15 @@ function ForTrainers() {
     return (
 
         <div >
-            <div className="ag-theme-bootstrap" style={{ width: 1350, height: 700, fontWeight: '700', lineHeight: '43px', paddingLeft: '185px' }}>
+            <div className="ag-theme-bootstrap" style={{ width: 1600, height: 600, fontWeight: '700', lineHeight: '43px', fontSize: '19px', paddingLeft: '185px', paddingTop: '50px' }}>
                 <AgGridReact
                     rowData={customers}
                     columnDefs={columns}
                     enableRangeSelection={true}
                     defaultColDef={{ resizable: true }}
-                    rowHeight={40}
-
-                // pagination={true}
-                // paginationPageSize={8}
+                    rowHeight={55}
+                    pagination={true}
+                    paginationPageSize={8}
                 />
             </div>
 

@@ -39,4 +39,12 @@
 
 .nav-link:hover {
   background-color: antiquewhite !important;
+  opacity: 0.5;
+}
+.btn-primary:hover {
+  background-color: antiquewhite !important;
+}
+
+.delete-btn:hover {
+  background-color: rgb(185, 18, 40) !important;
 }

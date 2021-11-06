@@ -4,15 +4,15 @@ import React, { useState } from 'react';
 import { Button, Offcanvas, Tab, Row, Col, Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
-// import Dashboard from './components/dashboard';
-// import ForCustomers from './components/forcustomer';
+import Dashboard from './components/dashboard';
+import ForCustomers from './components/forcustomer';
 import ForTrainers from './components/fortrainer';
-// import Calendar from './components/calendar';
-// import Stats from './components/stats';
+import Calendar from './components/calendar';
+import Stats from './components/stats';
 
 import Home from 'react-bootstrap-icons/dist/icons/house-door'
 import Activity from 'react-bootstrap-icons/dist/icons/activity';
-import Calendar from 'react-bootstrap-icons/dist/icons/calendar2-date';
+import Schedule from 'react-bootstrap-icons/dist/icons/calendar2-date';
 import Customer from 'react-bootstrap-icons/dist/icons/person-circle';
 import Statsistics from 'react-bootstrap-icons/dist/icons/bar-chart-line'
 // import City from '.../react-bootstrap-icons/dist/icons/geo-alt';
@@ -39,12 +39,8 @@ function App() {
           Menu
         </Button>
 
-
-
-        
-
         <ForTrainers />
-
+        <ForCustomers />
 
 
         <Offcanvas show={menu} onHide={handleClose} style={{ backgroundColor: '#565e69' }}>
@@ -57,8 +53,8 @@ function App() {
           </Offcanvas.Header>
           <Offcanvas.Body>
 
-
             <Tab.Container id="left-tabs-example">
+
               <Row>
                 <Col md={6}>
 
@@ -66,7 +62,7 @@ function App() {
 
                     <Nav.Item >
                       <Nav.Link eventKey="first" variant="secondary"
-                        style={{ cursor: "pointer", color: "#877e8f", ariaSelected:'false', fontSize: '24px', fontWeight: '400', paddingTop: '50px', paddingLeft: '20px', width: '400px' }}>
+                        style={{ cursor: "pointer", color: "#877e8f", ariaSelected: 'false', fontSize: '24px', fontWeight: '400', paddingTop: '50px', paddingLeft: '20px', width: '400px' }}>
                         Dashboard  <Home />
                       </Nav.Link>
                     </Nav.Item>
@@ -88,7 +84,7 @@ function App() {
                     <Nav.Item>
                       <Nav.Link eventKey="fourth"
                         style={{ cursor: "pointer", color: "#877e8f", fontSize: '24px', fontWeight: '400', paddingTop: '50px', paddingLeft: '20px', width: '400px' }} >
-                        Calendar <Calendar />
+                        Calendar <Schedule />
                       </Nav.Link>
                     </Nav.Item>
 
@@ -107,37 +103,42 @@ function App() {
 
                     <Tab.Pane eventKey="first" >
 
-                      {/* <Dashboard / > */}
+                      <Dashboard />
 
                     </Tab.Pane>
                     <Tab.Pane eventKey="second">
 
-                      {/* <ForTrainers / > */}
+                      <ForTrainers />
 
                     </Tab.Pane>
                     <Tab.Pane eventKey="third">
 
-                      {/* <ForCustomers / > */}
+                      <ForCustomers />
 
                     </Tab.Pane>
                     <Tab.Pane eventKey="fourth">
 
-                      {/* <Calendar / > */}
+                      <Calendar />
 
                     </Tab.Pane>
                     <Tab.Pane eventKey="fifth">
 
-                      {/* <Stats / > */}
+                      <Stats />
 
                     </Tab.Pane>
 
                   </Tab.Content>
                 </Col>
+
+
               </Row>
             </Tab.Container>
 
+
           </Offcanvas.Body>
         </Offcanvas>
+
+
 
       </div>
     </div>
