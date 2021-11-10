@@ -4,7 +4,7 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-bootstrap.css";
 
 import 'bootstrap/dist/css/bootstrap.css';
-import Dayjs from 'dayjs'
+import dayjs from 'dayjs'
 
 import { Button, Toast } from 'react-bootstrap';
 import Delete from 'react-bootstrap-icons/dist/icons/trash'
@@ -34,7 +34,7 @@ function ForCustomers() {
 
     const deleteCustomer = url => {
         if (window.confirm('Are you sure?')) {
-            fetch(url, { method: 'DELETE' })
+            fetch('https://customerrest.herokuapp.com/api/trainings/' + url, { method: 'DELETE' })
                 .then(response => {
                     if (response.ok) {
                         setOpen(!open);
@@ -53,12 +53,15 @@ function ForCustomers() {
     // };
 
 
+
+
     const columns = [
         
         {
             headerName: "Date", field: 'date', sortable: true, filter: true, floatingFilter: true, maxWidth: 190,
             cellStyle: { fontWeight: '400' },
-            cellRendererFramework: () => (Dayjs().format('DD/MM/YY, H:mm'))
+            // cellRendererFramework: () => (Dayjs().format('DD/MM/YY, H:mm'))
+            valueFormatter: (params) =>   dayjs(params.value).format('DD/MM/YY, H:mm')
         },
         {
             headerName: "Min", field: 'duration', filter: true, sortable: true, floatingFilter: true, maxWidth: 100,
@@ -94,7 +97,7 @@ function ForCustomers() {
             sortable: false,
             width: 120,
             // field: "links.0.href",
-            field: "customer.id",
+            field: "id",
             cellRendererFramework: (params) => (
                 <Button className="delete-btn" style={{ height: '10', width: '70px', backgroundColor: '#bd3a57', border: '1px solid #bd3a57', paddingTop: '5px', alignItems: 'right', outline: 'none', marginTop: '10px' }}
                     onClick={() => deleteCustomer(params.value)}>
@@ -108,7 +111,7 @@ function ForCustomers() {
 
     return (
         <div >
-            <div className="ag-theme-bootstrap" style={{ width: 1575, height: 600, fontWeight: '700', fontSize: '19px', paddingLeft: '100px'}}>
+            <div className="ag-theme-bootstrap" style={{ width: 1575, height: 600, fontWeight: '700', fontSize: '19px', paddingLeft: '100px', marginTop: '50px'}}>
                 <AgGridReact
                     rowData={trainings}
                     columnDefs={columns}
