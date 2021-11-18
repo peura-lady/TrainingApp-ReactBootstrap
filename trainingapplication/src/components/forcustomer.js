@@ -32,7 +32,7 @@ function ForCustomers() {
     //     setOpen(false);
     // }
 
-    const deleteCustomer = url => {
+    const deleteTraining = url => {
         if (window.confirm('Are you sure?')) {
             fetch('https://customerrest.herokuapp.com/api/trainings/' + url, { method: 'DELETE' })
                 .then(response => {
@@ -47,13 +47,6 @@ function ForCustomers() {
                 .catch((err) => console.log(err));
         }
     };
-
-    // const deleteCustomer = url => {
-    //     console.log(url);
-    // };
-
-
-
 
     const columns = [
         
@@ -100,9 +93,7 @@ function ForCustomers() {
             field: "id",
             cellRendererFramework: (params) => (
                 <Button className="delete-btn" style={{ height: '10', width: '70px', backgroundColor: '#bd3a57', border: '1px solid #bd3a57', paddingTop: '5px', alignItems: 'right', outline: 'none', marginTop: '10px' }}
-                    onClick={() => deleteCustomer(params.value)}>
-                    {/* onClick={() => deleteCustomer(params.value)}> */}
-                    {/* onClick={() => toggleSetOpen => deleteCustomer(params.value)}> */}
+                    onClick={() => deleteTraining(params.value)}>
                     <Delete style={{ fontSize: '15px' }} />
                 </Button>
             )
