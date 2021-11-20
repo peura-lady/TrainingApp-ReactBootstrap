@@ -9,9 +9,7 @@ import 'react-time-picker/dist/TimePicker.css';
 function AddTraining(props) {
 
     const [open, setOpen] = React.useState(false);
-
     const [date, setDate] = useState(new Date());
-
     const [time, setTime] = useState('10:00');
 
     const [training, setTraining] = React.useState({

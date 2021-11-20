@@ -26,6 +26,8 @@ function App() {
   const handleClose = () => setMenu(false);
   const handleShow = () => setMenu(true);
 
+  // const forCustomer = '<ForCustomer />'
+
 
   return (
     <div>
@@ -39,8 +41,23 @@ function App() {
           Menu
         </Button>
 
+
+
         {/* <ForTrainers /> */}
-        <ForCustomers />
+        {/* <ForCustomers /> */}
+
+
+        
+
+        {/* <ForCustomers forCustomer={forCustomer} /> */}
+
+        
+
+
+
+
+
+
 
 
         <Offcanvas show={menu} onHide={handleClose} style={{ backgroundColor: '#ad95ba' }}>
@@ -51,9 +68,31 @@ function App() {
               Menu
             </Offcanvas.Title>
           </Offcanvas.Header>
-          <Offcanvas.Body>
+          {/* <Offcanvas.Body */}
+          <Offcanvas.Body style={{display: 'block'}}>
 
-            <Tab.Container id="left-tabs-example">
+            <Button onClick={handleShow}>
+            Dashboard
+            </Button>
+
+            <Button onClick={handleShow}>
+              {/* <AddTraining addTraining={addTraining} /> */}
+            Customers
+            </Button>
+
+            <Button>
+            Trainings
+            </Button>
+
+            <Button>
+            Calendar
+            </Button>
+
+            <Button>
+            Statistics
+            </Button>
+
+            {/* <Tab.Container id="left-tabs-example">
 
               <Row>
                 <Col md={6}>
@@ -132,7 +171,7 @@ function App() {
 
 
               </Row>
-            </Tab.Container>
+            </Tab.Container> */}
 
 
           </Offcanvas.Body>
