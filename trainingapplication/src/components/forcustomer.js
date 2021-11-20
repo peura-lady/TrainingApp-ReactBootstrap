@@ -8,6 +8,7 @@ import dayjs from 'dayjs'
 
 import { Button, Toast } from 'react-bootstrap';
 import Delete from 'react-bootstrap-icons/dist/icons/trash'
+import AddTraining from './addTraining';
 
 function ForCustomers() {
 
@@ -47,6 +48,43 @@ function ForCustomers() {
                 .catch((err) => console.log(err));
         }
     };
+
+    // const addTraining = href => {
+    //     fetch('https://customerrest.herokuapp.com/api/trainings/' + url, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-type': 'application/json'
+    //         },
+    //         body: JSON.stringify(href)
+    //     })
+    //         .then(response => fetchTrainers())
+    //         .catch((err) => console.log(err));
+    // }
+
+    // const addTraining = url => {
+    //     fetch('https://customerrest.herokuapp.com/api/trainings/' + url, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-type': 'application/json'
+    //         },
+    //         body: JSON.stringify(url)
+    //     })
+    //         .then(response => fetchTrainers())
+    //         .catch((err) => console.log(err));
+    // }
+
+    const addTraining = href => {
+        fetch('https://customerrest.herokuapp.com/gettrainings', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(href)
+        })
+            .then(response => fetchTrainers())
+            .catch((err) => console.log(err));
+    }
+
 
     const columns = [
         
@@ -102,6 +140,8 @@ function ForCustomers() {
 
     return (
         <div >
+             
+             <AddTraining addTraining={addTraining} />
             <div className="ag-theme-bootstrap" style={{ width: 1575, height: 600, fontWeight: '700', fontSize: '19px', paddingLeft: '100px', marginTop: '50px'}}>
                 <AgGridReact
                     rowData={trainings}

@@ -39,8 +39,8 @@ function App() {
           Menu
         </Button>
 
-        <ForTrainers />
-        {/* <ForCustomers /> */}
+        {/* <ForTrainers /> */}
+        <ForCustomers />
 
 
         <Offcanvas show={menu} onHide={handleClose} style={{ backgroundColor: '#ad95ba' }}>

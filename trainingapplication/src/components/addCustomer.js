@@ -1,5 +1,4 @@
 import React from "react";
-// import Button from "@restart/ui/esm/Button";
 import { Form, Button, Row, Col, Offcanvas } from 'react-bootstrap';
 
 function AddCustomer(props) {
@@ -51,24 +50,24 @@ function AddCustomer(props) {
         <Offcanvas.Body>
           
         <Form open={open} onClose={handleClose}>
-                    <Row className="mb-3">
-                        <Form.Group as={Col} controlId="formName">
+                    
+                        <Form.Group controlId="formName">
                             <Form.Label value={customer.firstname} onChange={inputChanged}>Name</Form.Label>
                             <Form.Control autoFocus />
                         </Form.Group>
 
-                        <Form.Group as={Col} controlId="formSurname">
+                        <Form.Group controlId="formSurname">
                             <Form.Label value={customer.lastname} onChange={inputChanged}>Surname</Form.Label>
                             <Form.Control />
                         </Form.Group>
-                    </Row>
+                    
 
-
-                    <Row className="mb-3">
-                        <Form.Group as={Col} controlId="formStreet">
+                    <Form.Group controlId="formStreet">
                             <Form.Label value={customer.streetaddress} onChange={inputChanged}>Street Adress</Form.Label>
                             <Form.Control />
                         </Form.Group>
+
+                    <Row className="mb-3">
 
                         <Form.Group as={Col} controlId="formPostCode">
                             <Form.Label value={customer.postcode} onChange={inputChanged}>Post Code</Form.Label>
