@@ -30,6 +30,7 @@ function ForTrainers() {
                 setCustomers(data.content)
             })
             .catch(err => console.error(err))
+            
     };
 
     const deleteCustomer = url => {
