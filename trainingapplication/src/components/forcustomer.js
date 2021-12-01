@@ -91,7 +91,6 @@ function ForCustomers() {
         {
             headerName: "Date", field: 'date', sortable: true, filter: true, floatingFilter: true, maxWidth: 190,
             cellStyle: { fontWeight: '400' },
-            // cellRendererFramework: () => (Dayjs().format('DD/MM/YY, H:mm'))
             valueFormatter: (params) =>   dayjs(params.value).format('DD/MM/YY, H:mm')
         },
         {

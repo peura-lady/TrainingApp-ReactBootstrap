@@ -51,7 +51,7 @@ function AddTraining(props) {
         <div>
             <div>
 
-                <Button variant="outlined" onClick={handleClickOpen} style={{ marginLeft: '1370px', color: "#f0edef", fontWeight: '600', fontSize: '18px', marginTop: '10px', padding: '15px', backgroundColor: '#ad95ba', border: '1px solid #ad95ba', borderRadius: '5px' }}>
+                <Button variant="dark" onClick={handleClickOpen} style={{ marginLeft: '1320px', color: "#b0b7df", fontWeight: '600', fontSize: '20px', marginTop: '10px', padding: '15px', background:'#393a3b', height:'70px', width:'230px' }}>
                     Add a new training
                 </Button>
 
@@ -129,11 +129,11 @@ function AddTraining(props) {
                                 <Form.Control />
                             </Form.Group>
 
-                            <Button variant="primary" type="submit" style={{ color: "#f0edef", fontWeight: '600', fontSize: '18px', padding: '15px', backgroundColor: '#ad95ba', border: '1px solid #ad95ba', borderRadius: '5px', width: '91px', marginTop: '20px' }} onClick={handleSave}>
+                            <Button type="submit" style={{color: "#b0b7df", fontWeight: '600', fontSize: '18px', marginTop: '10px', padding: '15px', background:'#393a3b', borderRadius: '5px', width:'140px' }} onClick={handleSave}>
                                 Submit
                             </Button>
 
-                            <Button style={{ color: "#f0edef", fontWeight: '600', fontSize: '18px', padding: '15px', backgroundColor: '#ad95ba', border: '1px solid #ad95ba', borderRadius: '5px', marginLeft: '20px', width: '91px', marginTop: '20px' }} onClick={handleClose}>Cancel</Button>
+                            <Button style={{color: "#b0b7df", fontWeight: '600', fontSize: '18px', marginTop: '10px', padding: '15px', background:'#393a3b', borderRadius: '5px', width:'140px', marginLeft:'20px' }} onClick={handleClose}>Cancel</Button>
                         </Form>
 
                     </Offcanvas.Body>
