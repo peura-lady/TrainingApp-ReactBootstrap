@@ -13,8 +13,10 @@ import AddTraining from './addTraining';
 function ForCustomers() {
 
     const [trainings, setTrainings] = useState([]);
-    const [open, setOpen] = useState(true);
-    // const toggleSetOpen = () => setOpen(!open);
+    const [showToast, setShowToast] = useState(true);
+    const toggleShowToast = () => setShowToast(!showToast)
+
+    const [msg, setMsg] = useState('')
 
     useEffect(() => {
         fetchTrainers();
@@ -38,7 +40,8 @@ function ForCustomers() {
             fetch('https://customerrest.herokuapp.com/api/trainings/' + url, { method: 'DELETE' })
                 .then(response => {
                     if (response.ok) {
-                        setOpen(!open);
+                        setMsg("Customer has been deleted sucessfully")
+                        setShowToast(true);
                         fetchTrainers();
                     }
                     else {
@@ -81,7 +84,10 @@ function ForCustomers() {
             },
             body: JSON.stringify(href)
         })
-            .then(response => fetchTrainers())
+            .then(response => {
+                setMsg("Customer has been deleted sucessfully")
+                fetchTrainers()
+            })
             .catch((err) => console.log(err));
     }
 
@@ -130,7 +136,7 @@ function ForCustomers() {
             field: "id",
             cellRendererFramework: (params) => (
                 <Button className="delete-btn" style={{ height: '10', width: '70px', backgroundColor: '#bd3a57', border: '1px solid #bd3a57', paddingTop: '5px', alignItems: 'right', outline: 'none', marginTop: '10px' }}
-                    onClick={() => deleteTraining(params.value)}>
+                    onClick={() => deleteTraining(params.value) + {toggleShowToast}} >
                     <Delete style={{ fontSize: '15px' }} />
                 </Button>
             )
@@ -165,6 +171,11 @@ function ForCustomers() {
 
           {/* <Toast.Body>Your Customer was deleted</Toast.Body>
         </Toast> */}
+
+<Toast message={msg} show={showToast} delay={3000} autohide onClose={toggleShowToast} style={{ marginButton: '10px' }}>
+
+<Toast.Body>Your Customer was deleted</Toast.Body>
+</Toast>
 
 
             </div>

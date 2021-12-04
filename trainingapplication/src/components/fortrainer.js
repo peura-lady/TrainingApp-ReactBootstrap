@@ -13,9 +13,10 @@ import EditCustomer from './editCustomers';
 function ForTrainers() {
 
     const [customers, setCustomers] = useState([]);
-    const [open, setOpen] = useState(true);
-    const toggleSetOpen = () => setOpen(!open);
     const [msg, setMsg] = useState('')
+
+    const [showToast, setShowToast] = useState(true);
+    const toggleShowToast = () => setShowToast(!showToast)
 
     //     const handleClose = () => {
     //     setOpen(false);
@@ -32,7 +33,7 @@ function ForTrainers() {
                 setCustomers(data.content)
             })
             .catch(err => console.error(err))
-            
+
     };
 
     const deleteCustomer = url => {
@@ -41,7 +42,7 @@ function ForTrainers() {
                 .then(response => {
                     if (response.ok) {
                         setMsg("Customer has been deleted sucessfully")
-                        setOpen(true);
+                        setShowToast(true);
                         fetchCustomers();
                     }
                     else {
@@ -52,7 +53,7 @@ function ForTrainers() {
         }
     };
 
-        const addCustomer = href => {
+    const addCustomer = href => {
         fetch('https://customerrest.herokuapp.com/api/customers', {
             method: 'POST',
             headers: {
@@ -72,16 +73,17 @@ function ForTrainers() {
             },
             body: JSON.stringify(updatedCar)
         })
-        .then(responce => {
-            setMsg("Customer has been edited sucessfully")
-            // .then(_ => {
-            //     setOpen(true);
-            // fetchCars();
-            // })
-            setOpen(true);
-            fetchCustomers();
-        })
-        .catch((err) => console.log(err));
+            .then(responce => {
+                setMsg("Customer has been edited sucessfully")
+                // .then(_ => {
+                //     setOpen(true);
+                // fetchCars();
+                // })
+
+                setShowToast(true);
+                fetchCustomers();
+            })
+            .catch((err) => console.log(err));
     }
 
     const columns = [
@@ -128,50 +130,56 @@ function ForTrainers() {
             width: 120,
             field: "links.0.href",
             cellRendererFramework: (params) => (
-                <Button className="delete-btn" style={{ height: '10', width: '70px', backgroundColor: '#bd3a57', border: '1px solid #bd3a57', paddingTop: '5px', alignItems: 'right', outline: 'none', marginTop: '10px' }}
-                    onClick={() => deleteCustomer(params.value)}>
-                    <Delete style={{ fontSize: '15px' }} />
-                </Button>
+                <Button className="delete-btn"
+                    style={{ height: '10', width: '70px', backgroundColor: '#bd3a57', border: '1px solid #bd3a57', paddingTop: '5px', alignItems: 'right', outline: 'none', marginTop: '10px' }}
+                    onClick={() => deleteCustomer(params.value) + {toggleShowToast}} >
+        <Delete style={{ fontSize: '15px' }} />
+                </Button >
             )
-        },
+},
     ]
 
-    return (
+return (
 
-        <div >
-            <AddCustomer addCustomer={addCustomer} />
-            <div className="ag-theme-bootstrap" style={{ width: 1550, height: 600, fontWeight: '700', lineHeight: '43px', fontSize: '19px', paddingLeft: '140px', paddingTop: '10px'}}>
-                <AgGridReact
-                    rowData={customers}
-                    columnDefs={columns}
-                    enableRangeSelection={true}
-                    defaultColDef={{ resizable: true }}
-                    rowHeight={60}
-                    pagination={true}
-                    paginationPageSize={8}
-                />
-            </div>
+    <div >
+        <AddCustomer addCustomer={addCustomer} />
+        <div className="ag-theme-bootstrap" style={{ width: 1550, height: 600, fontWeight: '700', lineHeight: '43px', fontSize: '19px', paddingLeft: '140px', paddingTop: '10px' }}>
+            <AgGridReact
+                rowData={customers}
+                columnDefs={columns}
+                enableRangeSelection={true}
+                defaultColDef={{ resizable: true }}
+                rowHeight={60}
+                pagination={true}
+                paginationPageSize={8}
+            />
+        </div>
 
-                {/* <Toast show={open} delay={3000} autohide onClose={deleteCustomer}>
+        {/* <Toast show={open} delay={3000} autohide onClose={deleteCustomer}>
 
                     <Toast.Body>Your Customer was deleted</Toast.Body>
                 </Toast> */}
 
-                {/* <Toast show={open} delay={3000} onClose={handleClose} style={{marginButton: '10px'}}> */}
-                <Toast message={msg} show={open} delay={3000} autohide onClose={toggleSetOpen} style={{ marginButton: '10px' }}>
+        {/* <Toast show={open} delay={3000} onClose={handleClose} style={{marginButton: '10px'}}> */}
+        {/* <Toast message={msg} show={open} delay={3000} autohide onClose={toggleSetOpen} style={{ marginButton: '10px' }}>
 
                     <Toast.Body>Your Customer was deleted</Toast.Body>
-                </Toast>
+                </Toast> */}
 
-            <div>
-            
+        <Toast message={msg} show={showToast} delay={3000} autohide onClose={toggleShowToast} style={{ marginButton: '10px' }}>
 
+            <Toast.Body>Your Customer was deleted</Toast.Body>
+        </Toast>
 
-            </div>
+        <div>
+
 
 
         </div>
-    )
+
+
+    </div>
+)
 }
 
 export default ForTrainers;
