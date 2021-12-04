@@ -8,12 +8,14 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import { Button, Toast } from 'react-bootstrap';
 import Delete from 'react-bootstrap-icons/dist/icons/trash'
+import EditCustomer from './editCustomers';
 
 function ForTrainers() {
 
     const [customers, setCustomers] = useState([]);
     const [open, setOpen] = useState(true);
     const toggleSetOpen = () => setOpen(!open);
+    const [msg, setMsg] = useState('')
 
     //     const handleClose = () => {
     //     setOpen(false);
@@ -38,7 +40,8 @@ function ForTrainers() {
             fetch(url, { method: 'DELETE' })
                 .then(response => {
                     if (response.ok) {
-                        setOpen(!open);
+                        setMsg("Customer has been deleted sucessfully")
+                        setOpen(true);
                         fetchCustomers();
                     }
                     else {
@@ -48,18 +51,6 @@ function ForTrainers() {
                 .catch((err) => console.log(err));
         }
     };
-    
-    // const addCar = car => {
-    //     fetch('http://carrestapi.herokuapp.com/cars/', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify(car)
-    //     })
-    //         .then(response => fetchCars())
-    //         .catch((err) => console.log(err));
-    // }
 
         const addCustomer = href => {
         fetch('https://customerrest.herokuapp.com/api/customers', {
@@ -71,6 +62,26 @@ function ForTrainers() {
         })
             .then(response => fetchCustomers())
             .catch((err) => console.log(err));
+    }
+
+    const editCustomer = (link, updatedCar) => {
+        fetch(link, {
+            method: 'PUT',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(updatedCar)
+        })
+        .then(responce => {
+            setMsg("Customer has been edited sucessfully")
+            // .then(_ => {
+            //     setOpen(true);
+            // fetchCars();
+            // })
+            setOpen(true);
+            fetchCustomers();
+        })
+        .catch((err) => console.log(err));
     }
 
     const columns = [
@@ -101,6 +112,14 @@ function ForTrainers() {
         {
             headerName: "Phone", field: 'phone', filter: true, sortable: true, floatingFilter: true, maxWidth: 160,
             cellStyle: { fontWeight: '400', fontSize: '17px' }
+        },
+        {
+            headerName: "",
+            sortable: false,
+            filter: false,
+            width: 120,
+            field: "_links.0.href",
+            cellRendererFramework: params => <EditCustomer editCustomer={editCustomer} row={params} />
         },
         {
             headerName: "",
@@ -139,7 +158,7 @@ function ForTrainers() {
                 </Toast> */}
 
                 {/* <Toast show={open} delay={3000} onClose={handleClose} style={{marginButton: '10px'}}> */}
-                <Toast show={open} delay={3000} autohide onClose={toggleSetOpen} style={{ marginButton: '10px' }}>
+                <Toast message={msg} show={open} delay={3000} autohide onClose={toggleSetOpen} style={{ marginButton: '10px' }}>
 
                     <Toast.Body>Your Customer was deleted</Toast.Body>
                 </Toast>

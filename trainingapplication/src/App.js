@@ -12,7 +12,7 @@ function App() {
 
   return (
     <div>
-      <div class="bg-dark bg-gradient">
+      <div className="bg-dark bg-gradient">
         <Menu />
       </div>
     </div>
