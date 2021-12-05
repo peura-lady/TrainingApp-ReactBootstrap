@@ -10,6 +10,8 @@ import { Button, Toast } from 'react-bootstrap';
 import Delete from 'react-bootstrap-icons/dist/icons/trash'
 import EditCustomer from './editCustomers';
 
+import { CSVLink } from 'react-csv';
+
 function ForTrainers() {
 
     const [customers, setCustomers] = useState([]);
@@ -42,7 +44,7 @@ function ForTrainers() {
                 .then(response => {
                     if (response.ok) {
                         setMsg("Customer has been deleted sucessfully")
-                        setShowToast(true);
+                        // setShowToast(true);
                         fetchCustomers();
                     }
                     else {
@@ -80,7 +82,7 @@ function ForTrainers() {
                 // fetchCars();
                 // })
 
-                setShowToast(true);
+                // setShowToast(true);
                 fetchCustomers();
             })
             .catch((err) => console.log(err));
@@ -132,54 +134,59 @@ function ForTrainers() {
             cellRendererFramework: (params) => (
                 <Button className="delete-btn"
                     style={{ height: '10', width: '70px', backgroundColor: '#bd3a57', border: '1px solid #bd3a57', paddingTop: '5px', alignItems: 'right', outline: 'none', marginTop: '10px' }}
-                    onClick={() => deleteCustomer(params.value) + {toggleShowToast}} >
-        <Delete style={{ fontSize: '15px' }} />
+                    onClick={() => deleteCustomer(params.value) + { toggleShowToast }} >
+                    <Delete style={{ fontSize: '15px' }} />
                 </Button >
             )
-},
+        },
     ]
 
-return (
+    return (
 
-    <div >
-        <AddCustomer addCustomer={addCustomer} />
-        <div className="ag-theme-bootstrap" style={{ width: 1550, height: 600, fontWeight: '700', lineHeight: '43px', fontSize: '19px', paddingLeft: '140px', paddingTop: '10px' }}>
-            <AgGridReact
-                rowData={customers}
-                columnDefs={columns}
-                enableRangeSelection={true}
-                defaultColDef={{ resizable: true }}
-                rowHeight={60}
-                pagination={true}
-                paginationPageSize={8}
-            />
-        </div>
+        <div >
+            <div>
+            <CSVLink style={{ marginLeft: '35px', color: "#b0b7df", fontWeight: '500', fontSize: '19px', marginTop: '10px', padding: '13px', background: 'rgb(220 231 242)', height: '70px', width: '230px', borderRadius:'5px' }} data={customers} separator=";">Export CSV</CSVLink>
+                <AddCustomer addCustomer={addCustomer} />
+                
+            </div>
+            <div className="ag-theme-bootstrap" style={{ width: 1550, height: 600, fontWeight: '700', lineHeight: '43px', fontSize: '19px', paddingLeft: '140px', paddingTop: '10px' }}>
+                <AgGridReact
+                    rowData={customers}
+                    columnDefs={columns}
+                    enableRangeSelection={true}
+                    defaultColDef={{ resizable: true }}
+                    rowHeight={60}
+                    pagination={true}
+                    paginationPageSize={8}
+                />
+            </div>
 
-        {/* <Toast show={open} delay={3000} autohide onClose={deleteCustomer}>
+
+            {/* <Toast show={open} delay={3000} autohide onClose={deleteCustomer}>
 
                     <Toast.Body>Your Customer was deleted</Toast.Body>
                 </Toast> */}
 
-        {/* <Toast show={open} delay={3000} onClose={handleClose} style={{marginButton: '10px'}}> */}
-        {/* <Toast message={msg} show={open} delay={3000} autohide onClose={toggleSetOpen} style={{ marginButton: '10px' }}>
+            {/* <Toast show={open} delay={3000} onClose={handleClose} style={{marginButton: '10px'}}> */}
+            {/* <Toast message={msg} show={open} delay={3000} autohide onClose={toggleSetOpen} style={{ marginButton: '10px' }}>
 
                     <Toast.Body>Your Customer was deleted</Toast.Body>
                 </Toast> */}
 
-        <Toast message={msg} show={showToast} delay={3000} autohide onClose={toggleShowToast} style={{ marginButton: '10px' }}>
+            <Toast message={msg} show={showToast} delay={3000} autohide onClose={toggleShowToast} style={{ marginButton: '10px' }}>
 
-            <Toast.Body>Your Customer was deleted</Toast.Body>
-        </Toast>
+                <Toast.Body>Your Customer was deleted</Toast.Body>
+            </Toast>
 
-        <div>
+            <div>
 
+
+
+            </div>
 
 
         </div>
-
-
-    </div>
-)
+    )
 }
 
 export default ForTrainers;
