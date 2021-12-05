@@ -10,6 +10,8 @@ import { Button, Toast } from 'react-bootstrap';
 import Delete from 'react-bootstrap-icons/dist/icons/trash'
 import AddTraining from './addTraining';
 
+// import Calendar from 'react-calendar';
+
 function ForCustomers() {
 
     const [trainings, setTrainings] = useState([]);

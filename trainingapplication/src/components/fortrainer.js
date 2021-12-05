@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AddCustomer from './addCustomer';
+import EditCustomer from './editCustomers';
 
 import { AgGridReact } from 'ag-grid-react';
 import "ag-grid-community/dist/styles/ag-grid.css";
@@ -8,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import { Button, Toast } from 'react-bootstrap';
 import Delete from 'react-bootstrap-icons/dist/icons/trash'
-import EditCustomer from './editCustomers';
+
 
 import { CSVLink } from 'react-csv';
 
