@@ -16,11 +16,8 @@ function AddTraining(props) {
         date: '',
         duration: '',
         activity: '',
-        firstname: '',
-        lastname: '',
-        city: '',
-        email: '',
-        phone: '',
+        customer: '',
+        
         // customer.firstname: '',
         // customer.lastname: '',
         // customer.city: '',
