@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AddCustomer from './addCustomer';
 import EditCustomer from './editCustomers';
+import AddTraining from './addTraining';
 
 import { AgGridReact } from 'ag-grid-react';
 import "ag-grid-community/dist/styles/ag-grid.css";
@@ -10,21 +11,14 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Toast } from 'react-bootstrap';
 import Delete from 'react-bootstrap-icons/dist/icons/trash'
 
-
 import { CSVLink } from 'react-csv';
 
 function ForTrainers() {
 
     const [customers, setCustomers] = useState([]);
-
     const [showToast, setShowToast] = useState(true);
     const toggleShowToast = () => setShowToast(!showToast)
-
     const [msg, setMsg] = useState('')
-
-    //     const handleClose = () => {
-    //     setOpen(false);
-    // }
 
     useEffect(() => {
         fetchCustomers();
@@ -66,6 +60,21 @@ function ForTrainers() {
             body: JSON.stringify(href)
         })
             .then(response => fetchCustomers())
+            .catch((err) => console.log(err));
+    }
+
+    const addTraining = href => {
+        fetch('https://customerrest.herokuapp.com/gettrainings', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(href)
+        })
+            .then(response => {
+                setMsg("Customer has been deleted sucessfully")
+                fetchCustomers()
+            })
             .catch((err) => console.log(err));
     }
 
@@ -124,6 +133,14 @@ function ForTrainers() {
         },
         {
             headerName: "",
+            sortable: false,
+            filter: false,
+            width: 120,
+            field: "_links.0.href",
+            cellRendererFramework: params => <AddTraining addTraining={addTraining} row={params} />
+        },
+        {
+            headerName: "",
             filter: false,
             sortable: false,
             width: 120,
@@ -137,16 +154,13 @@ function ForTrainers() {
             )
         },
     ]
-
     return (
-
         <div >
             <div>
-                <CSVLink style={{ marginLeft: '35px', color: "#b0b7df", fontWeight: '500', fontSize: '19px', marginTop: '10px', padding: '13px', background: 'rgb(220 231 242)', height: '70px', width: '230px', borderRadius: '5px' }} data={customers} separator=";">Export CSV</CSVLink>
+                <CSVLink style={{ marginLeft: '60px', color: "#b0b7df", fontWeight: '500', fontSize: '19px', marginTop: '10px', padding: '13px', background: 'rgb(220 231 242)', height: '70px', width: '230px', borderRadius: '5px' }} data={customers} separator=";">Export CSV</CSVLink>
                 <AddCustomer addCustomer={addCustomer} />
-
             </div>
-            <div className="ag-theme-bootstrap" style={{ width: 1550, height: 600, fontWeight: '700', lineHeight: '43px', fontSize: '19px', paddingLeft: '140px', paddingTop: '10px' }}>
+            <div className="ag-theme-bootstrap" style={{ width: '100%', height: 600, fontWeight: '700', lineHeight: '43px', fontSize: '19px', paddingLeft: '90px', paddingTop: '10px' }}>
                 <AgGridReact
                     rowData={customers}
                     columnDefs={columns}
@@ -157,19 +171,9 @@ function ForTrainers() {
                     paginationPageSize={8}
                 />
             </div>
-
             <Toast message={msg} show={showToast} delay={3000} autohide onClose={toggleShowToast} style={{ marginButton: '10px' }}>
-
                 <Toast.Body>Your action with Customer is complete</Toast.Body>
             </Toast>
-
-            <div>
-
-
-
-            </div>
-
-
         </div>
     )
 }

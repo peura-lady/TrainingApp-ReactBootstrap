@@ -5,8 +5,6 @@ import { Button, Offcanvas, Form, Row, Col } from 'react-bootstrap';
 function EditCustomer(props) {
 
     const [open, setOpen] = React.useState(false);
-
-
     const [customer, setCustomer] = React.useState({
         firstname: '',
         lastname: '',
@@ -47,11 +45,8 @@ function EditCustomer(props) {
     return (
         <div>
             <Button onClick={handleClickOpen} style={{ height: '10', width: '70px', backgroundColor: '#9cca81', border: '1px solid #9cca81', paddingTop: '5px', alignItems: 'right', outline: 'none', marginTop: '10px' }}>
-                {/* <Button size="small"  onClick={handleClickOpen}> */}
                 Edit
             </Button>
-
-
 
             <Offcanvas show={open} onHide={handleClose} placement='end'>
                 <Offcanvas.Header closeButton>
@@ -69,7 +64,6 @@ function EditCustomer(props) {
                                 type="text"
                             />
                         </Form.Group>
-
                         <Form.Group controlId="formSurname">
                             <Form.Label>Surname</Form.Label>
                             <Form.Control
@@ -79,8 +73,6 @@ function EditCustomer(props) {
                                 onChange={inputChanged}
                             />
                         </Form.Group>
-
-
                         <Form.Group controlId="formStreet">
                             <Form.Label>Street Adress</Form.Label>
                             <Form.Control
@@ -90,9 +82,7 @@ function EditCustomer(props) {
                                 onChange={inputChanged}
                             />
                         </Form.Group>
-
                         <Row className="mb-3">
-
                             <Form.Group as={Col} controlId="formPostCode">
                                 <Form.Label>Post Code</Form.Label>
                                 <Form.Control
@@ -102,7 +92,6 @@ function EditCustomer(props) {
                                     onChange={inputChanged}
                                 />
                             </Form.Group>
-
                             <Form.Group as={Col} controlId="formCity">
                                 <Form.Label>City</Form.Label>
                                 <Form.Control
@@ -113,7 +102,6 @@ function EditCustomer(props) {
                                 />
                             </Form.Group>
                         </Row>
-
                         <Row className="mb-3">
                             <Form.Group as={Col} controlId="formEmail">
                                 <Form.Label>Email</Form.Label>
@@ -124,7 +112,6 @@ function EditCustomer(props) {
                                     onChange={inputChanged}
                                 />
                             </Form.Group>
-
                             <Form.Group as={Col} controlId="formPhone">
                                 <Form.Label>Phone</Form.Label>
                                 <Form.Control
@@ -139,14 +126,10 @@ function EditCustomer(props) {
                         <Button type="submit" style={{ color: "#b0b7df", fontWeight: '600', fontSize: '18px', marginTop: '10px', padding: '15px', background: '#393a3b', borderRadius: '5px', width: '140px' }} onClick={handleSave}>
                             Submit
                         </Button>
-
                         <Button style={{ color: "#b0b7df", fontWeight: '600', fontSize: '18px', marginTop: '10px', padding: '15px', background: '#393a3b', borderRadius: '5px', width: '140px', marginLeft: '20px' }} onClick={handleClose}>Cancel</Button>
                     </Form>
-
                 </Offcanvas.Body>
             </Offcanvas>
-
-
         </div>
     )
 }

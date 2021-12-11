@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-bootstrap.css";
@@ -8,18 +8,12 @@ import dayjs from 'dayjs'
 
 import { Button, Toast } from 'react-bootstrap';
 import Delete from 'react-bootstrap-icons/dist/icons/trash'
-import AddTraining from './addTraining';
-
-// import Calendar from 'react-calendar';
 
 function ForCustomers() {
 
     const [trainings, setTrainings] = useState([]);
-
     const [showToast, setShowToast] = useState(true);
     const toggleShowToast = () => setShowToast(!showToast)
-
-
     const [msg, setMsg] = useState('')
 
     useEffect(() => {
@@ -34,10 +28,6 @@ function ForCustomers() {
             })
             .catch(err => console.error(err))
     };
-
-    // const handleClose = () => {
-    //     setOpen(false);
-    // }
 
     const deleteTraining = url => {
         if (window.confirm('Are you sure?')) {
@@ -56,52 +46,11 @@ function ForCustomers() {
         }
     };
 
-    // const addTraining = href => {
-    //     fetch('https://customerrest.herokuapp.com/api/trainings/' + url, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify(href)
-    //     })
-    //         .then(response => fetchTrainers())
-    //         .catch((err) => console.log(err));
-    // }
-
-    // const addTraining = url => {
-    //     fetch('https://customerrest.herokuapp.com/api/trainings/' + url, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify(url)
-    //     })
-    //         .then(response => fetchTrainers())
-    //         .catch((err) => console.log(err));
-    // }
-
-    const addTraining = href => {
-        fetch('https://customerrest.herokuapp.com/gettrainings', {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(href)
-        })
-            .then(response => {
-                setMsg("Customer has been deleted sucessfully")
-                fetchTrainers()
-            })
-            .catch((err) => console.log(err));
-    }
-
-
     const columns = [
-        
         {
             headerName: "Date", field: 'date', sortable: true, filter: true, floatingFilter: true, maxWidth: 190,
             cellStyle: { fontWeight: '400' },
-            valueFormatter: (params) =>   dayjs(params.value).format('DD/MM/YY, H:mm')
+            valueFormatter: (params) => dayjs(params.value).format('DD/MM/YY, H:mm')
         },
         {
             headerName: "Min", field: 'duration', filter: true, sortable: true, floatingFilter: true, maxWidth: 100,
@@ -109,7 +58,7 @@ function ForCustomers() {
         },
         {
             headerName: "Activity", field: 'activity', filter: true, sortable: true, floatingFilter: true, maxWidth: 180,
-            cellStyle: {  fontWeight: '600', fontSize: '17px' }
+            cellStyle: { fontWeight: '600', fontSize: '17px' }
         },
         {
             headerName: "First Name", field: 'customer.firstname', filter: true, sortable: true, floatingFilter: true, maxWidth: 150,
@@ -129,14 +78,13 @@ function ForCustomers() {
         },
         {
             headerName: "Phone", field: "customer.phone", sortable: true, filter: true, floatingFilter: true, maxWidth: 150,
-            cellStyle: { textAlign: 'left', fontWeight: '400', fontSize: '17px'}
+            cellStyle: { textAlign: 'left', fontWeight: '400', fontSize: '17px' }
         },
         {
             headerName: "",
             filter: false,
             sortable: false,
             width: 120,
-            // field: "links.0.href",
             field: "id",
             cellRendererFramework: (params) => (
                 <Button className="delete-btn" style={{ height: '10', width: '70px', backgroundColor: '#bd3a57', border: '1px solid #bd3a57', paddingTop: '5px', alignItems: 'right', outline: 'none', marginTop: '10px' }}
@@ -149,9 +97,7 @@ function ForCustomers() {
 
     return (
         <div >
-             
-             <AddTraining addTraining={addTraining} />
-            <div className="ag-theme-bootstrap" style={{ width: 1575, height: 600, fontWeight: '700', fontSize: '19px', paddingLeft: '100px', marginTop: '50px'}}>
+            <div className="ag-theme-bootstrap" style={{ width: "100%", height: 600, fontWeight: '700', fontSize: '19px', paddingLeft: '150px', marginTop: '50px' }}>
                 <AgGridReact
                     rowData={trainings}
                     columnDefs={columns}
@@ -162,20 +108,12 @@ function ForCustomers() {
                     paginationPageSize={8}
                 />
             </div>
-
             <div>
-
-<Toast message={msg} show={showToast} delay={3000} autohide onClose={toggleShowToast} style={{ marginButton: '10px' }}>
-
-<Toast.Body>Your action with training is complete</Toast.Body>
-</Toast>
-
-
+                <Toast message={msg} show={showToast} delay={3000} autohide onClose={toggleShowToast} style={{ marginButton: '10px' }}>
+                    <Toast.Body>Your action with training is complete</Toast.Body>
+                </Toast>
             </div>
-
-
         </div>
-
     )
 }
 

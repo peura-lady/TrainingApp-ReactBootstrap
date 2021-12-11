@@ -60,6 +60,7 @@
 
 .bg-dark.bg-gradient{
   height: 70px;
+
 }
 
 .menu-style{
@@ -71,4 +72,6 @@
 
 .nav-link{
   color: #b0b7df !important;
+  width: 200px;
+  display: block;
 }

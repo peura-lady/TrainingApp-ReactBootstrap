@@ -1,22 +1,7 @@
-// import React, {useState, useEffect} from 'react';
 import React from 'react';
-// import React, { PureComponent } from 'react';
 import { BarChart, Bar, XAxis, YAxis, Legend, ResponsiveContainer } from 'recharts';
 
-
-// function Stats(props) {
 function Stats() {
-
-    // const data = [{
-    //     name: 'Activity', uv: 400, pv: 2400, amt: 2400
-    // }];
-    // const data = [{name: 'Page A', uv: 400, pv: 2400, amt: 2400}, ... ];
-
-    // const data = React.useState({
-    //     name: 'Activity',
-    //     activity: props.row.data.activity,
-    // })
-
     const data = [
         {
             name: 'Spinning',
@@ -49,7 +34,6 @@ function Stats() {
             amt: 2181,
         },
     ];
-
 
     return (
         <div>

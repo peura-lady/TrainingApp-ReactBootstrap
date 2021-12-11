@@ -44,12 +44,10 @@ function AddTraining(props) {
 
 
     return (
-
         <div>
             <div>
-
-                <Button variant="dark" onClick={handleClickOpen} style={{ marginLeft: '1320px', color: "#b0b7df", fontWeight: '600', fontSize: '20px', marginTop: '10px', padding: '15px', background: '#393a3b', height: '70px', width: '230px' }}>
-                    Add a new training
+                <Button variant="dark" onClick={handleClickOpen} style={{ height: '10', width: '106px', backgroundColor: '#5ea4e0', border: '1px solid #5ea4e0', paddingTop: '5px', alignItems: 'right', outline: 'none', marginTop: '10px' }}>
+                    Add training
                 </Button>
 
                 <Offcanvas show={open} onHide={handleClose} placement='end'>
@@ -57,7 +55,6 @@ function AddTraining(props) {
                         <Offcanvas.Title>Add Training</Offcanvas.Title>
                     </Offcanvas.Header>
                     <Offcanvas.Body>
-
                         <Form open={open} onClose={handleClose}>
                             <Form.Group controlId="formDate">
                                 <Form.Label>
@@ -68,105 +65,92 @@ function AddTraining(props) {
                                     />
                                     <TimePicker
                                         closeClock={true}
-                                        disableClock={true}
+                                        // disableClock={true}
                                         onChange={setTime}
                                         value={time}
                                     />
                                 </Form.Label>
-                                <Form.Control 
-                                value={training.date} 
-                                onChange={inputChanged}
+                                <Form.Control
+                                    value={training.date}
+                                    onChange={inputChanged}
+                                    name="date"
+                                    type="text"
                                 />
                             </Form.Group>
-
                             <Form.Group controlId="formDuration">
                                 <Form.Label>Duration</Form.Label>
-                                {/* <Form.Select defaultValue="Choose...">
-                                    <option>30 min</option>
-                                    <option>45 min</option>
-                                    <option>60 min</option>
-                                    <option>90 min</option>
-                                </Form.Select> */}
-                                <Form.Control 
-                                value={training.duration} 
-                                onChange={inputChanged}
+                                <Form.Control
+                                    value={training.duration}
+                                    onChange={inputChanged}
+                                    name="duration"
+                                    type="text"
                                 />
                             </Form.Group>
-
                             <Form.Group controlId="formActivity">
                                 <Form.Label >Activity</Form.Label>
-                                {/* <Form.Select defaultValue="Choose...">
-                                    <option>Zumba</option>
-                                    <option>Gym Training</option>
-                                    <option>Fitness</option>
-                                    <option>Spinning</option>
-                                    <option>Jogging</option>
-                                </Form.Select> */}
-                                
-                                <Form.Control 
-                                value={training.activity} 
-                                onChange={inputChanged} 
+                                <Form.Control
+                                    value={training.activity}
+                                    onChange={inputChanged}
+                                    name="activity"
+                                    type="text"
                                 />
                             </Form.Group>
-
                             <Form.Group controlId="formName">
                                 <Form.Label >First Name</Form.Label>
-                                <Form.Control 
-                                value={training.firstname} 
-                                onChange={inputChanged} 
+                                <Form.Control
+                                    value={training.firstname}
+                                    onChange={inputChanged}
+                                    name="firstname"
+                                    type="text"
                                 />
                             </Form.Group>
-
                             <Form.Group controlId="formSurname">
                                 <Form.Label >Surname</Form.Label>
                                 <Form.Control
-                                value={training.lastname} 
-                                onChange={inputChanged}
+                                    value={training.lastname}
+                                    onChange={inputChanged}
+                                    name="surname"
+                                    type="text"
                                 />
                             </Form.Group>
-
                             <Row className="mb-3">
                                 <Form.Group as={Col} controlId="formCity">
                                     <Form.Label >City </Form.Label>
-                                    {/* <Form.Select defaultValue="Choose...">
-                                        <option>Choose...</option>
-                                        <option>Flintsone</option>
-                                    </Form.Select> */}
-                                    <Form.Control 
-                                    value={training.city} 
-                                    onChange={inputChanged}
+                                    <Form.Control
+                                        value={training.city}
+                                        onChange={inputChanged}
+                                        name="city"
+                                        type="text"
                                     />
                                 </Form.Group>
 
                                 <Form.Group as={Col} controlId="formPhone">
                                     <Form.Label >Phone</Form.Label>
                                     <Form.Control
-                                    value={training.phone} 
-                                    onChange={inputChanged}
+                                        value={training.phone}
+                                        onChange={inputChanged}
+                                        name="phone"
+                                        type="text"
                                     />
                                 </Form.Group>
                             </Row>
-
                             <Form.Group controlId="formEmail">
                                 <Form.Label >Email</Form.Label>
                                 <Form.Control
-                                value={training.email} 
-                                onChange={inputChanged}
+                                    value={training.email}
+                                    onChange={inputChanged}
+                                    name="email"
+                                    type="text"
                                 />
                             </Form.Group>
 
                             <Button type="submit" style={{ color: "#b0b7df", fontWeight: '600', fontSize: '18px', marginTop: '10px', padding: '15px', background: '#393a3b', borderRadius: '5px', width: '140px' }} onClick={handleSave}>
                                 Submit
                             </Button>
-
                             <Button style={{ color: "#b0b7df", fontWeight: '600', fontSize: '18px', marginTop: '10px', padding: '15px', background: '#393a3b', borderRadius: '5px', width: '140px', marginLeft: '20px' }} onClick={handleClose}>Cancel</Button>
                         </Form>
-
                     </Offcanvas.Body>
                 </Offcanvas>
-
-
-
             </div>
         </div>
     )
