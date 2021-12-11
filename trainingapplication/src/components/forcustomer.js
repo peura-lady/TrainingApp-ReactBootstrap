@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-bootstrap.css";
@@ -15,8 +15,10 @@ import AddTraining from './addTraining';
 function ForCustomers() {
 
     const [trainings, setTrainings] = useState([]);
+
     const [showToast, setShowToast] = useState(true);
     const toggleShowToast = () => setShowToast(!showToast)
+
 
     const [msg, setMsg] = useState('')
 
@@ -42,7 +44,7 @@ function ForCustomers() {
             fetch('https://customerrest.herokuapp.com/api/trainings/' + url, { method: 'DELETE' })
                 .then(response => {
                     if (response.ok) {
-                        setMsg("Customer has been deleted sucessfully")
+                        setMsg("Training has been deleted sucessfully")
                         setShowToast(true);
                         fetchTrainers();
                     }
@@ -138,7 +140,7 @@ function ForCustomers() {
             field: "id",
             cellRendererFramework: (params) => (
                 <Button className="delete-btn" style={{ height: '10', width: '70px', backgroundColor: '#bd3a57', border: '1px solid #bd3a57', paddingTop: '5px', alignItems: 'right', outline: 'none', marginTop: '10px' }}
-                    onClick={() => deleteTraining(params.value) + {toggleShowToast}} >
+                    onClick={() => deleteTraining(params.value)} >
                     <Delete style={{ fontSize: '15px' }} />
                 </Button>
             )
@@ -163,20 +165,9 @@ function ForCustomers() {
 
             <div>
 
-                {/* <Toast show={open} delay={3000} autohide onClose={handleClose}>
-
-                    <Toast.Body>Your Customer was deleted</Toast.Body>
-                </Toast> */}
-
-                {/* <Toast show={open} delay={3000} onClose={handleClose} style={{marginButton: '10px'}}> */}
-                {/* <Toast show={open} delay={3000} onClose={toggleSetOpen} style={{marginButton: '10px'}}> */}
-
-          {/* <Toast.Body>Your Customer was deleted</Toast.Body>
-        </Toast> */}
-
 <Toast message={msg} show={showToast} delay={3000} autohide onClose={toggleShowToast} style={{ marginButton: '10px' }}>
 
-<Toast.Body>Your Customer was deleted</Toast.Body>
+<Toast.Body>Your action with training is complete</Toast.Body>
 </Toast>
 
 
