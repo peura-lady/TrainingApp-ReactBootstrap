@@ -34,7 +34,7 @@ function AddTraining(props) {
     };
 
     const handleSave = () => {
-        props.addCustomer(training);
+        props.saveTraining({...training, date: `${training.date}:00.000+02:00`})
         handleClose();
     }
 

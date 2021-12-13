@@ -16,7 +16,6 @@ function EditCustomer(props) {
     })
 
     const handleClickOpen = () => {
-        // console.log(props.row)
         setCustomer({
             firstname: props.row.data.firstname,
             lastname: props.row.data.lastname,
@@ -31,16 +30,17 @@ function EditCustomer(props) {
 
     const handleClose = () => {
         setOpen(false);
-    };
+      };
 
     const handleSave = () => {
         props.editCustomer(props.row.value, customer);
         handleClose();
     }
 
-    const inputChanged = event => {
-        setCustomer({ ...customer, [event.target.name]: event.target.value })
-    };
+
+    const inputChanged = (event) => {
+        setCustomer({...customer, [event.target.name]: event.target.value})
+    }
 
     return (
         <div>
