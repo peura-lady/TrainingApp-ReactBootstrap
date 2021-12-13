@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Dashboard from './dashboard';
 import ForCustomers from './forcustomer';
 import ForTrainers from './fortrainer';
-import Calendar from './calendar';
+import TrainingCalendar from './calendar';
 import Stats from './stats';
 
 import Home from 'react-bootstrap-icons/dist/icons/house-door'
@@ -46,7 +46,7 @@ function Menu() {
             <Route active exact path="/dashboard" element={<Dashboard />}></Route>
             <Route path="/fortrainer" element={<ForTrainers />}></Route>
             <Route path="/forcustomer" element={<ForCustomers />}></Route>
-            <Route path="/calendar" element={<Calendar />}></Route>
+            <Route path="/calendar" element={<TrainingCalendar />}></Route>
             <Route path="/stats" element={<Stats />}></Route>
             <Route render={() => <h1> Page not found</h1>} />
           </Routes>
