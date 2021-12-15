@@ -7,7 +7,7 @@ function Weather() {
     const [isLoading, setLoading] = React.useState(false);
 
     React.useEffect(() => {
-        fetch('https://api.openweathermap.org/data/2.5/weather?q=London&APPID=1c503b9d5f7a258a35b97d4c4e24c002&units=metric')
+        fetch('https://api.openweathermap.org/data/2.5/weather?q=Helsinki&APPID=1c503b9d5f7a258a35b97d4c4e24c002&units=metric')
 
             .then(response => response.json())
 

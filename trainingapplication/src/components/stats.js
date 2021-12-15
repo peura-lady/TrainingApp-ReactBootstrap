@@ -1,53 +1,44 @@
-import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, Legend, ResponsiveContainer } from 'recharts';
+import React, { useState, useEffect } from 'react'
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 
-function Stats() {
-    const data = [
-        {
-            name: 'Spinning',
-            uv: 3000,
-            pv: 2400,
-            amt: 2400,
-        },
-        {
-            name: 'Gym Training',
-            uv: 4000,
-            pv: 1398,
-            amt: 2210,
-        },
-        {
-            name: 'Fitness',
-            uv: 2000,
-            pv: 9800,
-            amt: 2290,
-        },
-        {
-            name: 'Zumba',
-            uv: 2780,
-            pv: 3908,
-            amt: 2000,
-        },
-        {
-            name: 'Jogging',
-            uv: 990,
-            pv: 4800,
-            amt: 2181,
-        },
-    ];
+function Statistics() {
+    const [trainings, setTrainings] = useState([])
+
+    useEffect(() => {
+        fetchTrainings()
+    }, [])
+
+    const fetchTrainings = () => {
+        fetch('https://customerrest.herokuapp.com/api/trainings')
+            .then((response) => response.json())
+            .then((data) => setTrainings(data.content))
+            .catch((err) => console.error(err))
+    }
 
     return (
         <div>
             <ResponsiveContainer width="100%" aspect={3}>
-
-                <BarChart width={600} height={300} data={data}>
-                    <XAxis dataKey="name" stroke="#8884d8" />
+                <BarChart
+                    width={500}
+                    height={300}
+                    data={trainings}
+                    margin={{
+                        top: 5,
+                        right: 30,
+                        left: 20,
+                        bottom: 5,
+                    }}
+                >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="activity" />
                     <YAxis />
-                    <Legend width={100} wrapperStyle={{ top: 40, right: 20, backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', borderRadius: 3, lineHeight: '40px' }} />
-                    <Bar dataKey="uv" fill="#8884d8" barSize={60} />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="duration" fill="#8884d8" />
                 </BarChart>
             </ResponsiveContainer>
         </div>
     )
 }
 
-export default Stats;
+export default Statistics

@@ -7,24 +7,17 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 function AddTraining(props) {
-      const [training, setTraining] = useState({
+    const [training, setTraining] = useState({
         date: '',
         activity: '',
         duration: '',
-        customer: 'link.0.href',
-      })
-
-    //   const [show, setShow] = useState(false)
-
-    //   const handleClose = () => setShow(false)
-    //   const handleShow = () => setShow(true)
+        customer: '',
+    })
 
     const [show, setShow] = useState(false);
-    // const [training, setTraining] = useState({ date: '', activity: '', duration: '', customer: '' });
 
     const handleShow = () => {
         setTraining({ ...training, customer: props.customer })
-        // setTraining({...training, customer: props.customer.link[0].href})
         setShow(true);
     };
 
@@ -35,11 +28,6 @@ function AddTraining(props) {
     const inputChanged = (event) => {
         setTraining({ ...training, [event.target.name]: event.target.value })
     }
-
-    //   const handleSave = () => {
-    //       props.saveTraining({...training, date: `${training.date}:00.000+02:00`})
-    //       handleClose();
-    //   }
 
     const handleSave = () => {
         props.addTraining(props.row.data.customer, training)
@@ -54,8 +42,7 @@ function AddTraining(props) {
 
             <Modal
                 show={show}
-                onHide={handleClose}
-            >
+                onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Add a training</Modal.Title>
                 </Modal.Header>
