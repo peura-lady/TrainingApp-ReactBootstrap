@@ -153,7 +153,7 @@ function ForTrainers() {
                 <CSVLink style={{ marginLeft: '60px', color: "#b0b7df", fontWeight: '500', fontSize: '19px', marginTop: '10px', padding: '13px', background: 'rgb(220 231 242)', height: '70px', width: '230px', borderRadius: '5px' }} data={customers} separator=";">Export CSV</CSVLink>
                 <AddCustomer addCustomer={addCustomer} />
             </div>
-            <div className="ag-theme-bootstrap" style={{ width: '100%', height: 600, fontWeight: '700', lineHeight: '43px', fontSize: '19px', paddingLeft: '90px', paddingTop: '10px' }}>
+            <div className="ag-theme-bootstrap" style={{ width: '100%', height: 600, fontWeight: '700', lineHeight: '43px', fontSize: '19px', paddingTop: '10px' }}>
                 <AgGridReact
                     rowData={customers}
                     columnDefs={columns}
