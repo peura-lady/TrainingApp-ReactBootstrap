@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from 'react'
 
-import { Button, Offcanvas, Form, Row, Col } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import Modal from 'react-bootstrap/Modal'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 function EditCustomer(props) {
-
-    const [open, setOpen] = React.useState(false);
-    const [customer, setCustomer] = React.useState({
+    const [customer, setCustomer] = useState({
         firstname: '',
         lastname: '',
         streetaddress: '',
@@ -15,7 +17,10 @@ function EditCustomer(props) {
         phone: '',
     })
 
-    const handleClickOpen = () => {
+    const [show, setShow] = useState(false)
+
+    const handleClose = () => setShow(false)
+    const handleShow = () => {
         setCustomer({
             firstname: props.row.data.firstname,
             lastname: props.row.data.lastname,
@@ -25,112 +30,125 @@ function EditCustomer(props) {
             email: props.row.data.email,
             phone: props.row.data.phone,
         })
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-      };
-
-    const handleSave = () => {
-        props.editCustomer(props.row.value, customer);
-        handleClose();
+        setShow(true)
     }
 
+    const handleSave = () => {
+        props.editCustomer(props.row.value, customer)
+        handleClose()
+    }
 
     const inputChanged = (event) => {
-        setCustomer({...customer, [event.target.name]: event.target.value})
+        setCustomer({ ...customer, [event.target.name]: event.target.value })
     }
 
     return (
-        <div>
-            <Button onClick={handleClickOpen} style={{ height: '10', width: '70px', backgroundColor: '#9cca81', border: '1px solid #9cca81', paddingTop: '5px', alignItems: 'right', outline: 'none', marginTop: '10px' }}>
+        <>
+            <Button variant="outline-primary" onClick={handleShow} style={{ height: '10', marginLeft: '30px', width: '70px', backgroundColor: '#9cca81', border: '1px solid #9cca81', paddingTop: '5px', alignItems: 'right', outline: 'none', marginTop: '10px', color: 'fff' }}>
                 Edit
             </Button>
 
-            <Offcanvas show={open} onHide={handleClose} placement='end'>
-                <Offcanvas.Header closeButton>
-                    <Offcanvas.Title>Add Training</Offcanvas.Title>
-                </Offcanvas.Header>
-                <Offcanvas.Body>
+            <Modal
+                show={show}
+                onHide={handleClose}
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>Edit a customer </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form open={show} onClose={handleClose}>
+                        <Row>
+                            <Form.Group as={Col} controlId="formGridFirstName">
+                                <Form.Label>First name: </Form.Label>
+                                <Form.Control
+                                    name="firstname"
+                                    as="input"
+                                    placeholder="First name"
+                                    value={customer.firstname}
+                                    onChange={inputChanged}
+                                    type="text"
+                                />
+                            </Form.Group>
 
-                    <Form open={open} onClose={handleClose}>
-                        <Form.Group controlId="formName">
-                            <Form.Label>Name</Form.Label>
-                            <Form.Control autoFocus
-                                name="firstname"
-                                value={customer.firstname}
-                                onChange={inputChanged}
-                                type="text"
-                            />
-                        </Form.Group>
-                        <Form.Group controlId="formSurname">
-                            <Form.Label>Surname</Form.Label>
-                            <Form.Control
-                                name="lastname"
-                                type="text"
-                                value={customer.lastname}
-                                onChange={inputChanged}
-                            />
-                        </Form.Group>
-                        <Form.Group controlId="formStreet">
-                            <Form.Label>Street Adress</Form.Label>
+                            <Form.Group as={Col} controlId="formGridLastName">
+                                <Form.Label>Last name: </Form.Label>
+                                <Form.Control
+                                    name="lastname"
+                                    placeholder="Last name"
+                                    defaultValue={customer.lastname}
+                                    onChange={inputChanged}
+                                    type="text"
+                                />
+                            </Form.Group>
+                        </Row>
+
+                        <Form.Group controlId="formGridAddress">
+                            <Form.Label>Street address: </Form.Label>
                             <Form.Control
                                 name="streetaddress"
-                                type="text"
-                                value={customer.streetaddress}
+                                placeholder="1234 Main St"
+                                defaultValue={customer.streetaddress}
                                 onChange={inputChanged}
+                                type="text"
                             />
                         </Form.Group>
-                        <Row className="mb-3">
-                            <Form.Group as={Col} controlId="formPostCode">
-                                <Form.Label>Post Code</Form.Label>
+
+                        <Row>
+                            <Form.Group as={Col} controlId="formGridZip">
+                                <Form.Label>Postcode: </Form.Label>
                                 <Form.Control
                                     name="postcode"
-                                    type="text"
-                                    value={customer.postcode}
+                                    defaultValue={customer.postcode}
                                     onChange={inputChanged}
+                                    type="text"
                                 />
                             </Form.Group>
-                            <Form.Group as={Col} controlId="formCity">
-                                <Form.Label>City</Form.Label>
+
+                            <Form.Group as={Col} controlId="formGridCity">
+                                <Form.Label>City: </Form.Label>
                                 <Form.Control
                                     name="city"
-                                    type="text"
-                                    value={customer.city}
+                                    defaultValue={customer.city}
                                     onChange={inputChanged}
-                                />
-                            </Form.Group>
-                        </Row>
-                        <Row className="mb-3">
-                            <Form.Group as={Col} controlId="formEmail">
-                                <Form.Label>Email</Form.Label>
-                                <Form.Control
-                                    name="email"
                                     type="text"
-                                    value={customer.email}
-                                    onChange={inputChanged}
-                                />
-                            </Form.Group>
-                            <Form.Group as={Col} controlId="formPhone">
-                                <Form.Label>Phone</Form.Label>
-                                <Form.Control
-                                    name="phone"
-                                    type="text"
-                                    value={customer.phone}
-                                    onChange={inputChanged}
                                 />
                             </Form.Group>
                         </Row>
 
-                        <Button type="submit" style={{ color: "#b0b7df", fontWeight: '600', fontSize: '18px', marginTop: '10px', padding: '15px', background: '#393a3b', borderRadius: '5px', width: '140px' }} onClick={handleSave}>
-                            Submit
+                        <Row>
+                            <Form.Group as={Col} controlId="formGridEmail">
+                                <Form.Label>Email: </Form.Label>
+                                <Form.Control
+                                    name="email"
+                                    type="email"
+                                    defaultValue={customer.email}
+                                    onChange={inputChanged}
+                                />
+                            </Form.Group>
+
+                            <Form.Group as={Col} controlId="formGridPhone">
+                                <Form.Label>Phone: </Form.Label>
+                                <Form.Control
+                                    name="phone"
+                                    defaultValue={customer.phone}
+                                    onChange={inputChanged}
+                                    type="text"
+                                />
+                            </Form.Group>
+                        </Row>
+
+                        <Button variant="primary" onClick={handleSave} style={{ color: "#b0b7df", fontWeight: '600', fontSize: '18px', marginTop: '10px', padding: '15px', background: '#393a3b', borderRadius: '5px', width: '140px' }}>
+                            Save
                         </Button>
-                        <Button style={{ color: "#b0b7df", fontWeight: '600', fontSize: '18px', marginTop: '10px', padding: '15px', background: '#393a3b', borderRadius: '5px', width: '140px', marginLeft: '20px' }} onClick={handleClose}>Cancel</Button>
+
+                        <Button variant="outline-secondary" onClick={handleClose} style={{ color: "#b0b7df", fontWeight: '600', fontSize: '18px', marginTop: '10px', padding: '15px', background: '#393a3b', borderRadius: '5px', width: '140px', marginLeft: '20px' }}>
+                            Cancel
+                        </Button>
+
                     </Form>
-                </Offcanvas.Body>
-            </Offcanvas>
-        </div>
+                </Modal.Body>
+            </Modal>
+        </>
     )
 }
 

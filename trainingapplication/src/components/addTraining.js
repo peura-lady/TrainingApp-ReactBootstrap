@@ -1,159 +1,117 @@
-import React, { useState } from 'react';
-import { Form, Button, Row, Col, Offcanvas } from 'react-bootstrap';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+import React, { useState } from 'react'
 
-import TimePicker from 'react-time-picker';
-import 'react-time-picker/dist/TimePicker.css';
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import Modal from 'react-bootstrap/Modal'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 function AddTraining(props) {
-
-    const [open, setOpen] = React.useState(false);
-    const [date, setDate] = useState(new Date());
-    const [time, setTime] = useState('10:00');
-
-    const [training, setTraining] = React.useState({
+      const [training, setTraining] = useState({
         date: '',
-        duration: '',
         activity: '',
-        customer: '',
+        duration: '',
+        customer: 'link.0.href',
+      })
 
-        // customer.firstname: '',
-        // customer.lastname: '',
-        // customer.city: '',
-        // customer.email: '',
-        // customer.phone: '',
-    })
+    //   const [show, setShow] = useState(false)
 
-    const handleClickOpen = () => {
-        setOpen(true);
+    //   const handleClose = () => setShow(false)
+    //   const handleShow = () => setShow(true)
+
+    const [show, setShow] = useState(false);
+    // const [training, setTraining] = useState({ date: '', activity: '', duration: '', customer: '' });
+
+    const handleShow = () => {
+        setTraining({ ...training, customer: props.customer })
+        // setTraining({...training, customer: props.customer.link[0].href})
+        setShow(true);
     };
 
     const handleClose = () => {
-        setOpen(false);
+        setShow(false);
     };
 
-    const handleSave = () => {
-        props.saveTraining({...training, date: `${training.date}:00.000+02:00`})
-        handleClose();
+    const inputChanged = (event) => {
+        setTraining({ ...training, [event.target.name]: event.target.value })
     }
 
-    const inputChanged = event => {
-        setTraining({ ...training, [event.target.name]: event.target.value })
-    };
+    //   const handleSave = () => {
+    //       props.saveTraining({...training, date: `${training.date}:00.000+02:00`})
+    //       handleClose();
+    //   }
 
+    const handleSave = () => {
+        props.addTraining(props.row.data.customer, training)
+        handleClose()
+    }
 
     return (
-        <div>
-            <div>
-                <Button variant="dark" onClick={handleClickOpen} style={{ height: '10', width: '106px', backgroundColor: '#5ea4e0', border: '1px solid #5ea4e0', paddingTop: '5px', alignItems: 'right', outline: 'none', marginTop: '10px' }}>
-                    Add training
-                </Button>
+        <>
+            <Button onClick={handleShow} style={{ height: '10', width: '119px', backgroundColor: '#5ea4e0', border: '1px solid #5ea4e0', paddingTop: '5px', alignItems: 'right', outline: 'none', marginTop: '10px' }}>
+                Add Training
+            </Button>
 
-                <Offcanvas show={open} onHide={handleClose} placement='end'>
-                    <Offcanvas.Header closeButton>
-                        <Offcanvas.Title>Add Training</Offcanvas.Title>
-                    </Offcanvas.Header>
-                    <Offcanvas.Body>
-                        <Form open={open} onClose={handleClose}>
-                            <Form.Group controlId="formDate">
-                                <Form.Label>
-                                    Date
-                                    <Calendar
-                                        onChange={setDate}
-                                        value={date}
-                                    />
-                                    <TimePicker
-                                        closeClock={true}
-                                        // disableClock={true}
-                                        onChange={setTime}
-                                        value={time}
-                                    />
-                                </Form.Label>
+            <Modal
+                show={show}
+                onHide={handleClose}
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>Add a training</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form open={show} onClose={handleClose}>
+                        <Row>
+                            <Form.Group as={Col} controlId="formGridDate">
+                                <Form.Label>Date: </Form.Label>
                                 <Form.Control
+                                    name="date"
+                                    as="input"
+                                    placeholder="Date"
                                     value={training.date}
                                     onChange={inputChanged}
-                                    name="date"
                                     type="text"
                                 />
                             </Form.Group>
-                            <Form.Group controlId="formDuration">
-                                <Form.Label>Duration</Form.Label>
+
+                            <Form.Group controlId="formGridDuration">
+                                <Form.Label>Duration: </Form.Label>
                                 <Form.Control
-                                    value={training.duration}
-                                    onChange={inputChanged}
                                     name="duration"
-                                    type="text"
-                                />
-                            </Form.Group>
-                            <Form.Group controlId="formActivity">
-                                <Form.Label >Activity</Form.Label>
-                                <Form.Control
-                                    value={training.activity}
+                                    placeholder="min"
+                                    defaultValue={training.duration}
                                     onChange={inputChanged}
-                                    name="activity"
                                     type="text"
                                 />
                             </Form.Group>
-                            <Form.Group controlId="formName">
-                                <Form.Label >First Name</Form.Label>
-                                <Form.Control
-                                    value={training.firstname}
-                                    onChange={inputChanged}
-                                    name="firstname"
-                                    type="text"
-                                />
-                            </Form.Group>
-                            <Form.Group controlId="formSurname">
-                                <Form.Label >Surname</Form.Label>
-                                <Form.Control
-                                    value={training.lastname}
-                                    onChange={inputChanged}
-                                    name="surname"
-                                    type="text"
-                                />
-                            </Form.Group>
-                            <Row className="mb-3">
-                                <Form.Group as={Col} controlId="formCity">
-                                    <Form.Label >City </Form.Label>
-                                    <Form.Control
-                                        value={training.city}
-                                        onChange={inputChanged}
-                                        name="city"
-                                        type="text"
-                                    />
-                                </Form.Group>
+                        </Row>
 
-                                <Form.Group as={Col} controlId="formPhone">
-                                    <Form.Label >Phone</Form.Label>
-                                    <Form.Control
-                                        value={training.phone}
-                                        onChange={inputChanged}
-                                        name="phone"
-                                        type="text"
-                                    />
-                                </Form.Group>
-                            </Row>
-                            <Form.Group controlId="formEmail">
-                                <Form.Label >Email</Form.Label>
-                                <Form.Control
-                                    value={training.email}
-                                    onChange={inputChanged}
-                                    name="email"
-                                    type="text"
-                                />
-                            </Form.Group>
+                        <Form.Group as={Col} controlId="formGridActivity">
+                            <Form.Label>Activity: </Form.Label>
+                            <Form.Control
+                                name="activity"
+                                placeholder="Activity"
+                                defaultValue={training.activity}
+                                onChange={inputChanged}
+                                type="text"
+                            />
+                        </Form.Group>
 
-                            <Button type="submit" style={{ color: "#b0b7df", fontWeight: '600', fontSize: '18px', marginTop: '10px', padding: '15px', background: '#393a3b', borderRadius: '5px', width: '140px' }} onClick={handleSave}>
-                                Submit
-                            </Button>
-                            <Button style={{ color: "#b0b7df", fontWeight: '600', fontSize: '18px', marginTop: '10px', padding: '15px', background: '#393a3b', borderRadius: '5px', width: '140px', marginLeft: '20px' }} onClick={handleClose}>Cancel</Button>
-                        </Form>
-                    </Offcanvas.Body>
-                </Offcanvas>
-            </div>
-        </div>
+                        <br />
+
+                        <Button variant="primary" onClick={handleSave} style={{ color: "#b0b7df", fontWeight: '600', fontSize: '18px', marginTop: '10px', padding: '15px', background: '#393a3b', borderRadius: '5px', width: '140px' }}>
+                            Save
+                        </Button>
+                        <Button variant="outline-secondary" onClick={handleClose} style={{ color: "#b0b7df", fontWeight: '600', fontSize: '18px', marginTop: '10px', padding: '15px', background: '#393a3b', borderRadius: '5px', width: '140px', marginLeft: '20px' }}>
+                            Cancel
+                        </Button>
+                        {'  '}
+
+                    </Form>
+                </Modal.Body>
+            </Modal>
+        </>
     )
 }
 
-export default AddTraining;
+export default AddTraining

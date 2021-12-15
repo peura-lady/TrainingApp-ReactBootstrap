@@ -15,9 +15,11 @@ import { CSVLink } from 'react-csv';
 
 function ForTrainers() {
 
-    const [customers, setCustomers] = useState([]);
     const [showToast, setShowToast] = useState(true);
     const toggleShowToast = () => setShowToast(!showToast)
+
+
+    const [customers, setCustomers] = useState([])
     const [msg, setMsg] = useState('')
 
     useEffect(() => {
@@ -94,66 +96,57 @@ function ForTrainers() {
             .catch((err) => console.log(err));
     }
 
+
     const columns = [
+        { field: 'firstname', width: 190, sortable: true, filter: true },
+        { field: 'lastname', width: 160, sortable: true, filter: true },
+        { field: 'streetaddress', width: 200, sortable: true, filter: true, cellStyle: { fontWeight: '400' } },
+        { field: 'postcode', width: 140, sortable: true, filter: true, cellStyle: { fontWeight: '400' } },
+        { field: 'city', width: 120, sortable: true, filter: true, cellStyle: { fontWeight: '400' } },
+        { field: 'email', width: 200, sortable: true, filter: true, cellStyle: { fontWeight: '400' } },
+        { field: 'phone', width: 160, sortable: true, filter: true, cellStyle: { fontWeight: '400' } },
+
         {
-            headerName: "Name", field: 'firstname', filter: true, sortable: true, floatingFilter: true, maxWidth: 190,
-            cellStyle: { fontWeight: '600', fontSize: '17px' }
-        },
-        {
-            headerName: "Surname", field: 'lastname', filter: true, sortable: true, floatingFilter: true, maxWidth: 160,
-            cellStyle: { fontWeight: '600', fontSize: '17px' }
-        },
-        {
-            headerName: "Street adress", field: 'streetaddress', filter: true, sortable: true, floatingFilter: true, maxWidth: 200,
-            cellStyle: { fontWeight: '400', fontSize: '17px' }
-        },
-        {
-            headerName: "Post Code", field: 'postcode', filter: true, sortable: true, floatingFilter: true, maxWidth: 140,
-            cellStyle: { fontWeight: '400', fontSize: '17px' }
-        },
-        {
-            headerName: "City", field: 'city', filter: true, sortable: true, floatingFilter: true, maxWidth: 120,
-            cellStyle: { fontWeight: '400', fontSize: '17px' }
-        },
-        {
-            headerName: "Email", field: 'email', filter: true, sortable: true, floatingFilter: true, maxWidth: 200,
-            cellStyle: { fontWeight: '400', fontSize: '17px' }
-        },
-        {
-            headerName: "Phone", field: 'phone', filter: true, sortable: true, floatingFilter: true, maxWidth: 160,
-            cellStyle: { fontWeight: '400', fontSize: '17px' }
-        },
-        {
-            headerName: "",
+            headerName: '',
             sortable: false,
             filter: false,
             width: 120,
-            field: "_links.0.href",
-            cellRendererFramework: params => <EditCustomer editCustomer={editCustomer} row={params} />
-        },
-        {
-            headerName: "",
-            sortable: false,
-            filter: false,
-            width: 120,
-            field: "_links.0.href",
-            cellRendererFramework: params => <AddTraining addTraining={addTraining} row={params} />
-        },
-        {
-            headerName: "",
-            filter: false,
-            sortable: false,
-            width: 120,
-            field: "links.0.href",
+            field: 'links.0.href',
             cellRendererFramework: (params) => (
                 <Button className="delete-btn"
                     style={{ height: '10', width: '70px', backgroundColor: '#bd3a57', border: '1px solid #bd3a57', paddingTop: '5px', alignItems: 'right', outline: 'none', marginTop: '10px' }}
                     onClick={() => deleteCustomer(params.value)} >
                     <Delete style={{ fontSize: '15px' }} />
                 </Button >
-            )
+            ),
+        },
+
+        {
+            headerName: '',
+            sortable: false,
+            filter: false,
+            width: 120,
+            field: 'links.0.href',
+            cellRendererFramework: (params) => (
+                <AddTraining addTraining={addTraining} row={params} />
+            ),
+        },
+
+        {
+            headerName: '',
+            sortable: false,
+            filter: false,
+            width: 120,
+            field: 'links.0.href',
+            cellRendererFramework: (params) => (
+                <EditCustomer editCustomer={editCustomer} row={params} />
+            ),
         },
     ]
+
+
+
+
     return (
         <div >
             <div>
@@ -179,3 +172,4 @@ function ForTrainers() {
 }
 
 export default ForTrainers;
+
