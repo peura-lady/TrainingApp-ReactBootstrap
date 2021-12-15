@@ -97,7 +97,7 @@ function ForCustomers() {
 
     return (
         <div >
-            <div className="ag-theme-bootstrap" style={{ width: "100%", height: 600, fontWeight: '700', fontSize: '19px', paddingLeft: '150px', marginTop: '50px' }}>
+            <div className="ag-theme-bootstrap" style={{ width: "100%", height: 600, fontWeight: '700', fontSize: '19px', marginTop: '50px' }}>
                 <AgGridReact
                     rowData={trainings}
                     columnDefs={columns}
